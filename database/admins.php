@@ -19,6 +19,7 @@ class Admin extends DB\Database{
         $this->conn->close();
         return $result;
     }
+
     public function FindById($id){
         $sql = "select * from $this->tableName where id= $id";
         $res = $this->conn->query($sql);
@@ -26,22 +27,28 @@ class Admin extends DB\Database{
         $this->conn->close();
         return $result;
     }
-    public function Update($id, $username , $card_id , $email ,$role_id) {
-        $sql = "UPDATE $this->tableName SET username='$username' ,card_id='$card_id', .\
-        email='$email',role_id='$role_id' where id= $id";
-        $this->conn->query($sql);
-    }
     public function Delete($id) {
         $sql = "DELETE FROM $this->tableName WHERE id=$id";
         $this->conn->query($sql);
-    }
-    public function Create($username , $card_id , $email , $role_id){
-        $sql = "INSERT INTO $this->tableName .\
-        ( username, card_id , email , role_id).\
-        VALUES ('$username', '$card_id', '$email','$role_id')";
-        $this->conn->query($sql);
+        $this->conn->close();
     }
 
+    public function Update($sql) {
+        $this->conn->query($sql);
+        $this->conn->close();
+    }
+
+    public function Create($sql){
+        $this->conn->query($sql);
+        $this->conn->close();
+    }
+
+    public function innerJoin($sql){
+        $res = $this->conn->query($sql);
+        $result = $res->fetch_assoc();
+        $this->conn->close();
+        return $result;
+    }
     
 }
 
