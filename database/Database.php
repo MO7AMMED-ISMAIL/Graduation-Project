@@ -3,7 +3,8 @@ namespace TableAdmin;
 include "base.php";
 use DB ;
 
-class Admin extends DB\Database{
+class Database extends DB\Database{
+
     public $tableName ;
     private $conn =  DB\Database::connect();
     public function __construct($table){
@@ -33,23 +34,37 @@ class Admin extends DB\Database{
         $this->conn->close();
     }
 
-    public function Update($sql) {
-        $this->conn->query($sql);
-        $this->conn->close();
+    public function Update(array $values , $id)
+    {
+
+        $sentence = ''; 
+
+        foreach ($values as $key => $value) {
+            $sentence .= $key . " = " . "'" . $value . "' ,"; 
+        }
+
+        $sentence = rtrim($sentence ,',') ;
+
+        $update = "UPDATE {$this->tableName} SET {$sentence} WHERE id = $id";
+
+        $this->conn ->query($update);
+    }
+   
+   
+
+    public function Insert(array $values)
+    {
+        $keys = array_keys($values);
+        $keys = implode(',', $keys);
+
+        $value = array_values($values);
+        $value = "'".implode("','" , $value)."'";
+
+        $insert = "INSERT INTO {$this->tableName} ({$keys}) VALUES ({$value})";
+        
+        $this->conn->query($insert);
     }
 
-    public function Create($sql){
-        $this->conn->query($sql);
-        $this->conn->close();
-    }
-
-    public function innerJoin($sql){
-        $res = $this->conn->query($sql);
-        $result = $res->fetch_assoc();
-        $this->conn->close();
-        return $result;
-    }
-    
 }
 
 //$admin = new Admin('Admins');
