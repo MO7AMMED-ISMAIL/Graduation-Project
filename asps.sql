@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2022 at 07:44 AM
+-- Generation Time: Jan 23, 2023 at 08:38 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -30,12 +30,32 @@ SET time_zone = "+00:00";
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `card_id` int(11) NOT NULL,
-  `image` text NOT NULL,
   `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `image_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `username`, `email`, `password`, `image_id`, `role_id`) VALUES
+(1, 'Mohamed Ismail', 'fcis@gmail.com', '011569595', 1, 1),
+(2, 'Ahmed', 'Ahmed@gmail.com', '32859484', 2, 1),
+(3, 'Anwer Ali', 'Anwer@gmail.com', '2548645', 3, 1),
+(4, 'Ali Yaser', 'Ali@gmail.com', '598759959', 4, 1),
+(5, 'Weal Ayman', 'weal@gmail.com', '54855947', 5, 1),
+(6, 'Mohsen Mohamed', 'Mohsen@gmail.com', '79955965', 6, 1),
+(7, 'Abdall Hassen', 'AdbHassen@gmail.com', '5484982', 7, 1),
+(8, 'Hani Mostafa', 'hani@gmail.com', '7859254', 8, 1),
+(9, 'Ahmed Abdall', 'Ahmedabad@gmail.com', '56589994', 0, 2),
+(10, 'Khilan Delhi', 'Delhi@gmail.com', '8745595759', 0, 2),
+(11, 'kaushik Kota', 'Kota@gmail.com', '204848000', 0, 2),
+(12, 'Chaitali Mumbai', 'Mumbai@gmail.com', '569895998', 0, 2),
+(13, 'Ramesh kaushik', 'kaushik@gmail.com', '56589994', 0, 2),
+(17, 'Hardik Bhopal', 'Bhopal@gmail.com', '850058400', 0, 2),
+(18, 'Komal MP', 'MP@gmail.com', '45548850', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -45,7 +65,7 @@ CREATE TABLE `admins` (
 
 CREATE TABLE `attendance` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `Emp_id` int(11) NOT NULL,
   `place_id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -53,26 +73,12 @@ CREATE TABLE `attendance` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cards`
+-- Table structure for table `images`
 --
 
-CREATE TABLE `cards` (
+CREATE TABLE `images` (
   `id` int(11) NOT NULL,
-  `card_id` int(11) NOT NULL,
-  `status` enum('active','passive') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `logs`
---
-
-CREATE TABLE `logs` (
-  `id` int(11) NOT NULL,
-  `card_id` int(11) NOT NULL,
-  `place_id` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -87,6 +93,15 @@ CREATE TABLE `places` (
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `places`
+--
+
+INSERT INTO `places` (`id`, `name`, `description`) VALUES
+(1, 'Room1', 'Admins Room Control'),
+(2, 'Room2', 'User Room finacial'),
+(3, 'Room3', 'Wating Room Vistor');
+
 -- --------------------------------------------------------
 
 --
@@ -98,17 +113,27 @@ CREATE TABLE `roles` (
   `title` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `title`) VALUES
+(1, 'admin'),
+(2, 'user'),
+(3, 'visitor');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `visitors`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `visitors` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `card_id` int(11) NOT NULL,
-  `premisson` text NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `image_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -121,30 +146,22 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `role_id` (`role_id`),
-  ADD KEY `card_id` (`card_id`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `role_users` (`role_id`);
 
 --
 -- Indexes for table `attendance`
 --
 ALTER TABLE `attendance`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `place_id` (`place_id`);
+  ADD KEY `Emp_id` (`Emp_id`),
+  ADD KEY `Place_id` (`place_id`);
 
 --
--- Indexes for table `cards`
+-- Indexes for table `images`
 --
-ALTER TABLE `cards`
+ALTER TABLE `images`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `logs`
---
-ALTER TABLE `logs`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `card_id` (`card_id`),
-  ADD KEY `place_id` (`place_id`);
 
 --
 -- Indexes for table `places`
@@ -159,11 +176,10 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indexes for table `visitors`
 --
-ALTER TABLE `users`
+ALTER TABLE `visitors`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `card_id` (`card_id`),
   ADD KEY `role_id` (`role_id`);
 
 --
@@ -174,7 +190,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `attendance`
@@ -183,28 +199,28 @@ ALTER TABLE `attendance`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `logs`
+-- AUTO_INCREMENT for table `images`
 --
-ALTER TABLE `logs`
+ALTER TABLE `images`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `visitors`
 --
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `visitors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
@@ -214,29 +230,20 @@ ALTER TABLE `users`
 -- Constraints for table `admins`
 --
 ALTER TABLE `admins`
-  ADD CONSTRAINT `admins_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
-  ADD CONSTRAINT `admins_ibfk_2` FOREIGN KEY (`card_id`) REFERENCES `cards` (`id`);
+  ADD CONSTRAINT `role_users` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 
 --
 -- Constraints for table `attendance`
 --
 ALTER TABLE `attendance`
-  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`);
+  ADD CONSTRAINT `Emp_id` FOREIGN KEY (`Emp_id`) REFERENCES `admins` (`id`),
+  ADD CONSTRAINT `Place_id` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`);
 
 --
--- Constraints for table `logs`
+-- Constraints for table `visitors`
 --
-ALTER TABLE `logs`
-  ADD CONSTRAINT `logs_ibfk_1` FOREIGN KEY (`card_id`) REFERENCES `cards` (`id`),
-  ADD CONSTRAINT `logs_ibfk_2` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`);
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`card_id`) REFERENCES `cards` (`id`),
-  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+ALTER TABLE `visitors`
+  ADD CONSTRAINT `visitors_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
