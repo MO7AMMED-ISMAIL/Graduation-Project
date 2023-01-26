@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2023 at 08:38 PM
+-- Generation Time: Jan 26, 2023 at 04:53 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -32,7 +32,6 @@ CREATE TABLE `admins` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `image_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -40,22 +39,23 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `username`, `email`, `password`, `image_id`, `role_id`) VALUES
-(1, 'Mohamed Ismail', 'fcis@gmail.com', '011569595', 1, 1),
-(2, 'Ahmed', 'Ahmed@gmail.com', '32859484', 2, 1),
-(3, 'Anwer Ali', 'Anwer@gmail.com', '2548645', 3, 1),
-(4, 'Ali Yaser', 'Ali@gmail.com', '598759959', 4, 1),
-(5, 'Weal Ayman', 'weal@gmail.com', '54855947', 5, 1),
-(6, 'Mohsen Mohamed', 'Mohsen@gmail.com', '79955965', 6, 1),
-(7, 'Abdall Hassen', 'AdbHassen@gmail.com', '5484982', 7, 1),
-(8, 'Hani Mostafa', 'hani@gmail.com', '7859254', 8, 1),
-(9, 'Ahmed Abdall', 'Ahmedabad@gmail.com', '56589994', 0, 2),
-(10, 'Khilan Delhi', 'Delhi@gmail.com', '8745595759', 0, 2),
-(11, 'kaushik Kota', 'Kota@gmail.com', '204848000', 0, 2),
-(12, 'Chaitali Mumbai', 'Mumbai@gmail.com', '569895998', 0, 2),
-(13, 'Ramesh kaushik', 'kaushik@gmail.com', '56589994', 0, 2),
-(17, 'Hardik Bhopal', 'Bhopal@gmail.com', '850058400', 0, 2),
-(18, 'Komal MP', 'MP@gmail.com', '45548850', 0, 2);
+INSERT INTO `admins` (`id`, `username`, `email`, `password`, `role_id`) VALUES
+(1, 'Mohamed Ismail', 'fcis@gmail.com', '011569595', 1),
+(2, 'Ahmed', 'Ahmed@gmail.com', '32859484', 1),
+(3, 'Anwer Ali', 'Anwer@gmail.com', '2548645', 1),
+(4, 'Ali Yaser', 'Ali@gmail.com', '598759959', 1),
+(5, 'Weal Ayman', 'weal@gmail.com', '54855947', 1),
+(6, 'Mohsen Mohamed', 'Mohsen@gmail.com', '79955965', 1),
+(7, 'Abdall Hassen', 'AdbHassen@gmail.com', '5484982', 1),
+(8, 'Hani Mostafa', 'hani@gmail.com', '7859254', 1),
+(9, 'Ahmed Abdall', 'Ahmedabad@gmail.com', '56589994', 2),
+(10, 'Khilan Delhi', 'Delhi@gmail.com', '8745595759', 2),
+(11, 'kaushik Kota', 'Kota@gmail.com', '204848000', 2),
+(12, 'Chaitali Mumbai', 'Mumbai@gmail.com', '569895998', 2),
+(13, 'Ramesh kaushik', 'kaushik@gmail.com', '56589994', 2),
+(17, 'Hardik Bhopal', 'Bhopal@gmail.com', '850058400', 2),
+(18, 'Komal MP', 'MP@gmail.com', '45548850', 2),
+(23, 'Maner Elsayed Ismail', 'mero@gmail.com', 'jgnti51686548gtr', 1);
 
 -- --------------------------------------------------------
 
@@ -78,7 +78,9 @@ CREATE TABLE `attendance` (
 
 CREATE TABLE `images` (
   `id` int(11) NOT NULL,
-  `image` text NOT NULL
+  `image` text NOT NULL,
+  `Admin_id` int(11) NOT NULL,
+  `visitor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -161,7 +163,9 @@ ALTER TABLE `attendance`
 -- Indexes for table `images`
 --
 ALTER TABLE `images`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `Admin_id` (`Admin_id`),
+  ADD KEY `visitor_id` (`visitor_id`);
 
 --
 -- Indexes for table `places`
@@ -180,7 +184,8 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `visitors`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `role_id` (`role_id`);
+  ADD KEY `role_id` (`role_id`),
+  ADD KEY `image_id` (`image_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -190,7 +195,7 @@ ALTER TABLE `visitors`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `attendance`
@@ -202,7 +207,7 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `places`
@@ -238,6 +243,13 @@ ALTER TABLE `admins`
 ALTER TABLE `attendance`
   ADD CONSTRAINT `Emp_id` FOREIGN KEY (`Emp_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `Place_id` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`);
+
+--
+-- Constraints for table `images`
+--
+ALTER TABLE `images`
+  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`Admin_id`) REFERENCES `admins` (`id`),
+  ADD CONSTRAINT `images_ibfk_2` FOREIGN KEY (`visitor_id`) REFERENCES `visitors` (`id`);
 
 --
 -- Constraints for table `visitors`
