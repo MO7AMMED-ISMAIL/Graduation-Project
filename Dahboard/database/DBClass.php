@@ -21,28 +21,27 @@ class Table extends Database{
         return $result;
     }
 
-    public function FindById($id){
-        $sql = "SELECT * FROM {$this->TbName} WHERE id=:id";
+    public function FindById($cond,$value){
+        $sql = "SELECT * FROM {$this->TbName} WHERE $cond=:id";
         $Sel = parent::connect()->prepare($sql);
-        $Sel->execute(['id' => $id]);
+        $Sel->execute(['id' => $value]);
         $result = $Sel->fetch();
         return $result;
     }
 
     public function Delete($id) {
-        $stmt = parent::connect()->prepare("DELETE * FROM {$this->TbName} WHERE id=:id");
-        $stmt->execute(['id' => $id]);
+        $stmt = parent::connect()->prepare("DELETE FROM {$this->TbName} WHERE id={$id}");
+        $stmt->execute();
     }
 
-    public function Update(array $values , $id){
-        $sentence = ''; 
-        foreach ($values as $key => $value) {
-            $sentence .= "{$key} = {$value} ,"; 
+    public function Update(array $data , $id){
+        $cols = array();
+        foreach($data as $key=>$val) {
+            $cols[] = "$key = '$val'";
         }
-        $sentence = rtrim($sentence ,',') ;
-        $sql = "UPDATE {$this->TbName} SET {$sentence} WHERE id = $id";
+        $sql = "UPDATE {$this->TbName} SET ". implode(', ', $cols) ." WHERE id = :id";
         $stmt = parent::connect()->prepare($sql);
-        $stmt = $stmt->execute();
+        $stmt->execute(['id' => $id]);
     }
 
     public function Create(array $values){
@@ -55,15 +54,16 @@ class Table extends Database{
         $stmt = $stmt->execute();
     }
 
-    public function input_data($data) { 
-        if(strlen($data)){
-            throw new Error("The input is empty");
+    public function inputData($data) { 
+        if(strlen($data) < 0){
+            throw new Error("The input {$data} is empty");
         }
         $data = trim($data);  
         $data = stripslashes($data);  
         $data = htmlspecialchars($data);  
         return $data;  
     }  
+
     public function ValidateEmail($data){
         if(filter_var($data, FILTER_VALIDATE_EMAIL)){
             return $data;
@@ -72,13 +72,31 @@ class Table extends Database{
         }
     }
 
-    public function InnerJoin($tableName , $atrr ){
-        $sql = "SELECT * FROM {$this->TbName} INNER JOIN {$tableName} ON {$this->TbName}.role_id = {$tableName}.id ";
+    public function InnerJoin($tableName , $atrr1 ,$atrr2, $value=1){
+        $sql = "SELECT $this->TbName.id , $this->TbName.username, $this->TbName.password ,$this->TbName.email, $tableName.title FROM {$this->TbName}  INNER JOIN {$tableName} ON {$this->TbName}.$atrr1 = {$tableName}.id WHERE {$tableName}.{$atrr2} = '$value'";
         $stmt = parent::connect()->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
         return $result;
     }
+
+    
+    function Upload($image){
+        $targetDir = "../uploads/";
+        $fileName = basename($image["name"]);
+        $targetFilePath = $targetDir . $fileName;
+        $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+        $allowTypes = array('jpg','png','jpeg','gif');
+        
+        if(in_array($fileType, $allowTypes)){
+            if(move_uploaded_file($image["tmp_name"], $targetFilePath)){
+                $arr = ["image"=>$targetFilePath];
+                $this->TbName = 'images';
+                self::Create($arr);
+            }
+        }
+    }
+
 }
 /* 
     $admin = new Table('admins');
