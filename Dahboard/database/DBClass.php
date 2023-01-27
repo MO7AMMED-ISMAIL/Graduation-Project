@@ -29,19 +29,19 @@ class Table extends Database{
         return $result;
     }
 
-    public function Delete($id) {
-        $stmt = parent::connect()->prepare("DELETE FROM {$this->TbName} WHERE id={$id}");
+    public function Delete($cond , $value) {
+        $stmt = parent::connect()->prepare("DELETE FROM {$this->TbName} WHERE {$cond} = {$value}");
         $stmt->execute();
     }
 
-    public function Update(array $data , $id){
+    public function Update(array $data , $cond , $value){
         $cols = array();
         foreach($data as $key=>$val) {
             $cols[] = "$key = '$val'";
         }
-        $sql = "UPDATE {$this->TbName} SET ". implode(', ', $cols) ." WHERE id = :id";
+        $sql = "UPDATE {$this->TbName} SET ". implode(', ', $cols) ." WHERE $cond  = :id";
         $stmt = parent::connect()->prepare($sql);
-        $stmt->execute(['id' => $id]);
+        $stmt->execute(['id' => $value]);
     }
 
     public function Create(array $values){
@@ -72,8 +72,13 @@ class Table extends Database{
         }
     }
 
-    public function InnerJoin($tableName , $atrr1 ,$atrr2, $value=1){
-        $sql = "SELECT $this->TbName.id , $this->TbName.username, $this->TbName.password ,$this->TbName.email, $tableName.title FROM {$this->TbName}  INNER JOIN {$tableName} ON {$this->TbName}.$atrr1 = {$tableName}.id WHERE {$tableName}.{$atrr2} = '$value'";
+    public function InnerJoin($tableName ,array $rows , array $cond){
+        $row = implode(', ',$rows);
+        $keys = array_keys($cond);
+        $key = implode(',', $keys);
+        $value = array_values($cond);
+        $value = implode(',', $value);
+        $sql = "SELECT $row FROM $this->TbName INNER JOIN $tableName ON  $key = $value";
         $stmt = parent::connect()->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();

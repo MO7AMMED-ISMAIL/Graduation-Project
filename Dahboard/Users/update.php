@@ -14,7 +14,7 @@ if($_POST['token'] == $_SESSION['token']){
     unset($_SESSION['token']);
 }
 
-$update = new Table('admins');  
+$update = new Table('users');  
 //validation
 $id = $update->inputData($_POST['id']);
 $username = $update->inputData($_POST['username']);
@@ -24,13 +24,13 @@ $email = $update->ValidateEmail($_POST['email']);
 
 //update
 $DataUpdate = [
-    "admin_name"=>$username,
-    "admin_password"=>$password,
-    "admin_email"=>$email,
-    "admin_phone"=>$phone
+    "user_name"=>$username,
+    "user_password"=>$password,
+    "user_email"=>$email,
+    "user_phone"=>$phone
 ];
-$updat = $update->Update($DataUpdate,'admin_id',$id);
-header("location: ../admin.php");
+$updat = $update->Update($DataUpdate,'user_id',$id);
+header("location: ../User.php");
 
 
 

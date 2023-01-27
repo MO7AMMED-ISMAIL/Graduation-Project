@@ -18,15 +18,17 @@ $admins = new Table('Admins');
 //validation
 $username = $admins->inputData($_POST['username']);
 $password = $admins->inputData($_POST['password']);
-$role_id = $admins->inputData($_POST['role_id']);
-$role_id = $role_id == 'Admin' ? 1 : '';
+$phone = $admins->inputData($_POST['phone']);
 $email = $admins->ValidateEmail($_POST['email']);
+$roles_id = $admins->inputData($_POST['role_id']);
+$roles_id = $roles_id == 'Admin' ? 1 : throw new Error('roles_id isnot valid');
 //insert user
 $DataInsert = [
-    'username'=>$username,
-    'password'=>$password,
-    'email'=>$email,
-    'role_id'=>$role_id,
+    'admin_name'=>$username,
+    'admin_password'=>$password,
+    'admin_email'=>$email,
+    'admin_phone'=>$phone,
+    'roles_id'=>$roles_id,
 ];
 $admins->Create($DataInsert);
 header("location: ../admin.php");

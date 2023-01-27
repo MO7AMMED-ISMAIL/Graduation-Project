@@ -1,5 +1,4 @@
 <?php
-    
     if(isset($_GET['edit'])){
         $_SESSION['token'] = bin2hex(random_bytes(32));
         $_SESSION['token_expire'] = time() + 3600 ;
@@ -16,27 +15,27 @@
                 <h2 class="h4 text-gray-900 mb-4">Updte Admin</h2>
             </div>
 
-            <form action="Admins/update.php" method="post" class="user" enctype="multipart/form-data">
+            <form action="Users/update.php" method="post" class="user" enctype="multipart/form-data">
             <div class="form-group">
                     <input type="hidden" class="form-control form-control-user" name="token" value="<?=$_SESSION['token']?>">
                 </div>
                 <div class="form-group">
-                    <input type="hidden" class="form-control form-control-user" name="id" value="<?=$AdminId?>">
+                    <input type="hidden" class="form-control form-control-user" name="id" value="<?=$UserId?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" placeholder="Enter User Name..." name="username" value="<?=$SelAdmin['admin_name']?>">
+                    <input type="text" class="form-control form-control-user" placeholder="Enter User Name..." name="username" value="<?=$SelUser['user_name']?>">
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" value="<?=$SelAdmin['admin_email']?>">
+                    <input type="email" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" value="<?=$SelUser['user_email']?>">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control form-control-user" placeholder="Enter Password..." name="password">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" placeholder="Enter Phone..." name="phone" value="<?=$SelAdmin['admin_phone']?>">
+                    <input type="text" class="form-control form-control-user" placeholder="Enter Phone..." name="phone" value="<?=$SelUser['user_phone']?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" placeholder="Password" name="roles_id" value="Admin" readonly>
+                    <input type="text" class="form-control form-control-user" placeholder="Password" name="roles_id" value="User" readonly>
                 </div>
                 <button class="btn btn-primary btn-user btn-block" type="submit">Update</button>
             </form>
