@@ -37,20 +37,17 @@
             </a>
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
+            <!--  Dashboard -->
             <li class="nav-item <?=$current == 'index'? 'active':''?>">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
             <hr class="sidebar-divider">
+            <div class="sidebar-heading">Interface</div>
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item <?=$current == 'Admin'? 'active':''?>">
+            <!-- Admin -->
+            <li href="" class="nav-item <?=$current == 'Admin'? 'active':''?>">
                 <a class="nav-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa-solid fa-pen"></i>
                     <span>Admins</span>
@@ -64,8 +61,9 @@
                     </div>
                 </div>
             </li>
+            <!-- Admin -->
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- User -->
             <li class="nav-item <?=$current == 'User'? 'active':''?>">
                 <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fa-solid fa-user"></i>
@@ -80,13 +78,15 @@
                     </div>
                 </div>
             </li>
+            <!-- End User -->
 
+            <!-- Visitor -->
             <li class="nav-item <?=$current == 'Visitor'? 'active':''?>">
-                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities2" aria-expanded="true" aria-controls="collapseUtilities2">
                     <i class="fa-solid fa-user"></i>
                     <span>Visitors</span>
                 </a>
-                <div id="collapseUtilities" class="collapse <?=$current == 'Visitor'?'show':''?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div id="collapseUtilities2" class="collapse <?=$current == 'Visitor'?'show':''?>" aria-labelledby="headingUtilities2" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
                         <a class="collapse-item <?=!isset($_GET['add'])== 'Visitor'?'active':''?>" href="Visitor.php">Display</a>
@@ -95,31 +95,32 @@
                     </div>
                 </div>
             </li>
-            
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- End Visitor -->
+
+            <!-- Rooms  --->
+            <li class="nav-item <?=$current == 'Places'? 'active':''?>">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities3" aria-expanded="true" aria-controls="collapseUtilities3">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Rooms</span>
+                </a>
+                <div id="collapseUtilities3" class="collapse <?=$current == 'Places'?'show':''?>" aria-labelledby="headingUtilities3" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item <?=!isset($_GET['add'])== 'Places'?'active':''?>" href="Place.php">Display</a>
+                        <a class="collapse-item <?=isset($_GET['add'])== 'Places'?'active':''?>" href="?add=Places"><span style="font-weight:bold">+</span>Add</a>
+                    </div>
+                </div>
+            </li>
+            <!-- End Rooms  --->
+
             <li class="nav-item">
                 <a class="nav-link" href="Attendance.php">
                     <i class="fa-solid fa-eye"></i>
                     <span>Attendence</span></a>
             </li>
-            <!-- Nav Item - IDs -->
-            <li class="nav-item">
-                <a class="nav-link" href="Rooms.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Rooms</span></a>
-            </li>
-            <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
         </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
