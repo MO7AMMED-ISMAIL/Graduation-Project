@@ -16,11 +16,11 @@
         include "Visitors/AddForm.php";
     }
     elseif(isset($_GET['edit'])){
-        $UserId = $_GET['edit'];
-        $SelUser = $users->FindById('user_id',$UserId);
+        $VisitorId = $_GET['edit'];
+        $SelVisitor = $visitors->FindById('visitor_id',$VisitorId);
         include "Visitors/EditForm.php";
-    }//else{
-    //     include "Visitors/table.php";
-    // }
+    }else{
+        include "Visitors/table.php";
+    }
     include "include/footer.php";
 ?>

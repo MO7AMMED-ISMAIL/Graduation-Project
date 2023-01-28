@@ -13,7 +13,7 @@
     <div class="col-lg-12">
         <div class="p-5">
             <div class="text-center">
-                <h2 class="h4 text-gray-900 mb-4">Updte Admin</h2>
+                <h2 class="h4 text-gray-900 mb-4">Update Admin</h2>
             </div>
 
             <form action="Admins/update.php" method="post" class="user" enctype="multipart/form-data">

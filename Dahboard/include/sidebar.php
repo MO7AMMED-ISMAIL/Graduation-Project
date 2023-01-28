@@ -98,13 +98,13 @@
             
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="Attendance.html">
+                <a class="nav-link" href="Attendance.php">
                     <i class="fa-solid fa-eye"></i>
                     <span>Attendence</span></a>
             </li>
             <!-- Nav Item - IDs -->
             <li class="nav-item">
-                <a class="nav-link" href="Rooms.html">
+                <a class="nav-link" href="Rooms.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Rooms</span></a>
             </li>

@@ -32,7 +32,7 @@
                     <input type="password" class="form-control form-control-user" placeholder="Enter Password..." name="password">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control form-control-user" placeholder="Enter Phone..." name="phone">
+                    <input type="text" class="form-control form-control-user" placeholder="Enter Phone..." name="phone">
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="Password" name="role_id" value="<?= $roles_id == 1? 'Admin':''?>" readonly>
