@@ -3,18 +3,19 @@ namespace DbClass;
 require "connect.php";
 use base\Database;
 use Error;
+use Exception;
 use PDO;
 
 class Table extends Database{
 
     public $TbName;
     //private $conn = parent::connect();
-    public function __construct($tableName)
-    {
+    public function __construct($tableName){
         $this->TbName = $tableName;
     }
-    public function FindAll(){
-        $sql = "SELECT * FROM {$this->TbName}";
+
+    public function FindAll($cond=1){
+        $sql = "SELECT * FROM {$this->TbName} WHERE ";
         $stmt = parent::connect()->prepare($sql);
         $stmt->execute(); 
         $result = $stmt->fetchAll();
@@ -22,11 +23,15 @@ class Table extends Database{
     }
 
     public function FindById($cond,$value){
-        $sql = "SELECT * FROM {$this->TbName} WHERE $cond=:id";
+        $sql = "SELECT * FROM {$this->TbName} WHERE $cond = :val";
         $Sel = parent::connect()->prepare($sql);
-        $Sel->execute(['id' => $value]);
-        $result = $Sel->fetch();
-        return $result;
+        $Sel->execute(['val' => $value]);
+        if($Sel->rowCount() > 0){
+            $result = $Sel->fetch();
+            return $result;
+        }else{
+            throw new Exception("email is not Found");
+        }
     }
 
     public function Delete($cond , $value) {
@@ -56,7 +61,7 @@ class Table extends Database{
 
     public function inputData($data) { 
         if(strlen($data) < 0){
-            throw new Error("The input {$data} is empty");
+            throw new Exception("The input {$data} is empty");
         }
         $data = trim($data);  
         $data = stripslashes($data);  
@@ -68,7 +73,7 @@ class Table extends Database{
         if(filter_var($data, FILTER_VALIDATE_EMAIL)){
             return $data;
         }else{
-            return new Error("is not valid Mail");
+            return new Exception("is not valid Mail");
         }
     }
 
@@ -99,6 +104,18 @@ class Table extends Database{
                 $this->TbName = 'images';
                 self::Create($arr);
             }
+        }
+    }
+
+    public function Login($email , $pass){
+        $sql = "SELECT * FROM {$this->TbName} WHERE admin_email = :em AND admin_password = :pass";
+        $stmt = parent::connect()->prepare($sql);
+        $stmt->execute(['em' => $email , 'pass'=>$pass]);
+        if($stmt->rowCount() > 0 ){
+            $result = $stmt->fetch();
+            return $result;
+        }else{
+            throw new Exception("email or passwor is not valid");
         }
     }
 

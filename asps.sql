@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2023 at 11:47 PM
+-- Generation Time: Jan 31, 2023 at 09:54 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admins` (
-  `Admin_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
   `admin_name` varchar(255) NOT NULL,
   `admin_email` varchar(255) NOT NULL,
   `admin_password` varchar(255) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`Admin_id`, `admin_name`, `admin_email`, `admin_password`, `admin_phone`, `roles_id`) VALUES
+INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_email`, `admin_password`, `admin_phone`, `roles_id`) VALUES
 (1, 'Mohamed Ismail', 'fcis@gmail.com', '011569595', '01008701177', 1),
 (2, 'Ahmed', 'Ahmed@gmail.com', '32859484', '01125059804', 1),
 (3, 'Anwer Ali', 'Anwer@gmail.com', '2548645', '01278404283', 1),
@@ -58,6 +58,19 @@ CREATE TABLE `attendance` (
   `attendance_id` int(11) NOT NULL,
   `place_id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emails`
+--
+
+CREATE TABLE `emails` (
+  `email_id` int(11) NOT NULL,
+  `email_content` text NOT NULL,
+  `admins_id` int(11) NOT NULL,
+  `users_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -91,6 +104,19 @@ INSERT INTO `places` (`place_id`, `place_name`, `place_description`) VALUES
 (1, 'Room1', 'Admins Room Control'),
 (2, 'Room2', 'User Room finacial'),
 (3, 'Room3', 'Wating Room Vistor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `post_id` int(11) NOT NULL,
+  `post_title` varchar(255) NOT NULL,
+  `post_content` text NOT NULL,
+  `admins_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -173,7 +199,7 @@ INSERT INTO `visitors` (`visitor_id`, `visitor_name`, `visitor_email`, `visitor_
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
-  ADD PRIMARY KEY (`Admin_id`),
+  ADD PRIMARY KEY (`admin_id`),
   ADD UNIQUE KEY `email` (`admin_email`),
   ADD KEY `role_users` (`roles_id`);
 
@@ -183,6 +209,14 @@ ALTER TABLE `admins`
 ALTER TABLE `attendance`
   ADD PRIMARY KEY (`attendance_id`),
   ADD KEY `Place_id` (`place_id`);
+
+--
+-- Indexes for table `emails`
+--
+ALTER TABLE `emails`
+  ADD PRIMARY KEY (`email_id`),
+  ADD KEY `admins_id` (`admins_id`),
+  ADD KEY `users_id` (`users_id`);
 
 --
 -- Indexes for table `images`
@@ -195,6 +229,13 @@ ALTER TABLE `images`
 --
 ALTER TABLE `places`
   ADD PRIMARY KEY (`place_id`);
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`post_id`),
+  ADD KEY `admins_id` (`admins_id`);
 
 --
 -- Indexes for table `roles`
@@ -224,13 +265,19 @@ ALTER TABLE `visitors`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `Admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
   MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `emails`
+--
+ALTER TABLE `emails`
+  MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `images`
@@ -243,6 +290,12 @@ ALTER TABLE `images`
 --
 ALTER TABLE `places`
   MODIFY `place_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -277,6 +330,19 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `attendance`
   ADD CONSTRAINT `Place_id` FOREIGN KEY (`place_id`) REFERENCES `places` (`place_id`);
+
+--
+-- Constraints for table `emails`
+--
+ALTER TABLE `emails`
+  ADD CONSTRAINT `emails_ibfk_1` FOREIGN KEY (`admins_id`) REFERENCES `admins` (`Admin_id`),
+  ADD CONSTRAINT `emails_ibfk_2` FOREIGN KEY (`users_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`admins_id`) REFERENCES `admins` (`Admin_id`);
 
 --
 -- Constraints for table `users`

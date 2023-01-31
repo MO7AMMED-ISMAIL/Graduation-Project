@@ -47,8 +47,8 @@
             <div class="sidebar-heading">Interface</div>
 
             <!-- Admin -->
-            <li href="" class="nav-item <?=$current == 'Admin'? 'active':''?>">
-                <a class="nav-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <li class="nav-item <?=$current == 'Admin'? 'active':''?>">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" href="#">
                     <i class="fa-solid fa-pen"></i>
                     <span>Admins</span>
                 </a>
