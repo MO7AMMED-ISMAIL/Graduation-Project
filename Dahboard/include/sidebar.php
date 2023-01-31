@@ -57,7 +57,7 @@
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item <?=!isset($_GET['add'])== 'Admin'?'active':''?>" href="Admin.php">Display</a>
 
-                        <a class="collapse-item <?=isset($_GET['add'])== 'Admin'?'active':''?>" href="?add=Admin"><span style="font-weight:bold">+</span>Add</a>
+                        <a class="collapse-item <?=isset($_GET['add'])== 'Admin'?'active':''?>" href="Admin.php?add=Admin"><span style="font-weight:bold">+</span>Add</a>
                     </div>
                 </div>
             </li>
@@ -74,7 +74,7 @@
                         <h6 class="collapse-header">Custom Utilities:</h6>
                         <a class="collapse-item <?=!isset($_GET['add'])== 'User'?'active':''?>" href="User.php">Display</a>
 
-                        <a class="collapse-item <?=isset($_GET['add'])== 'User'?'active':''?>" href="?add=User"><span style="font-weight:bold">+</span>Add</a>
+                        <a class="collapse-item <?=isset($_GET['add'])== 'User'?'active':''?>" href="User.php?add=User"><span style="font-weight:bold">+</span>Add</a>
                     </div>
                 </div>
             </li>
@@ -91,7 +91,7 @@
                         <h6 class="collapse-header">Custom Utilities:</h6>
                         <a class="collapse-item <?=!isset($_GET['add'])== 'Visitor'?'active':''?>" href="Visitor.php">Display</a>
 
-                        <a class="collapse-item <?=isset($_GET['add'])== 'Visitor'?'active':''?>" href="?add=Visitor"><span style="font-weight:bold">+</span>Add</a>
+                        <a class="collapse-item <?=isset($_GET['add'])== 'Visitor'?'active':''?>" href="Visitor.php?add=Visitor"><span style="font-weight:bold">+</span>Add</a>
                     </div>
                 </div>
             </li>
@@ -107,7 +107,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
                         <a class="collapse-item <?=!isset($_GET['add'])== 'Places'?'active':''?>" href="Place.php">Display</a>
-                        <a class="collapse-item <?=isset($_GET['add'])== 'Places'?'active':''?>" href="?add=Places"><span style="font-weight:bold">+</span>Add</a>
+                        <a class="collapse-item <?=isset($_GET['add'])== 'Places'?'active':''?>" href="Place.php?add=Places"><span style="font-weight:bold">+</span>Add</a>
                     </div>
                 </div>
             </li>

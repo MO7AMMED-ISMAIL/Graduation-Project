@@ -7,7 +7,7 @@
     include "database/DBClass.php";
     use DbClass\Table;
     $places = new Table('places');
-    $places = $places->FindAll();
+    $result = $places->FindAll();
     
     if(isset($_GET['add']) == 'Place'){
         include "Places/AddForm.php";
