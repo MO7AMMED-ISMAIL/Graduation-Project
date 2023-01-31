@@ -22,18 +22,21 @@
         $mail = new PHPMailer(true);
 
         //$mail->SMTPDebug = SMTP::DEBUG_SERVER; //Show error
+                           //Enable verbose debug output
+         
         $mail->Host       = 'smtp.example.com'; 
         $mail->SMTPAuth   = true; 
-        $mail->Username   = '######'; // your email 
-        $mail->Password   = '######'; // your password
-        $mail->Port       = 587;
+        $mail->Username   = 'aspsmailer@gmail.com'; // your email 
+        $mail->Password   = 'kncuaijsbvgucocs'; // your password
+        $mail->Port       = 456;
         //Recipients
-        $mail->setFrom('your mail', 'Mailer');
-        $mail->addAddress('recive mail', 'Joe User'); 
+        $mail->setFrom('aspsmailer@gmail.com', 'ASPS Team');
+        $mail->addAddress('dohaseif2@gmail.com'); 
     
         //Content
         $mail->isHTML(true); 
-        $mail->Subject = 'Here is the subject';
+        $mail->Subject = 'Forgetten password message';
+        
         $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
     
