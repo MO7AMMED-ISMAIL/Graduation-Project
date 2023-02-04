@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $current = 'Place';
+    $current = 'Places';
     $id = 1;
     include "include/sidebar.php";
     include "include/navbar.php";

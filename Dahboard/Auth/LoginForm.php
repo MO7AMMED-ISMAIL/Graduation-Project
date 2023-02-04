@@ -2,6 +2,10 @@
     session_start();
     $_SESSION['token'] = bin2hex(random_bytes(32));
     $_SESSION['token_expire'] = time() + 3600;
+    if(isset($_SESSION['Admin_id'])){
+        header("location: ../index.php");
+        exit();
+    }
 ?>
 
 <head>
@@ -22,28 +26,22 @@
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block"><img src="../img/logo.jpg" width="460" height="590" /></div>
+                            <div class="col-lg-6 d-none d-lg-block"><img src="../img/logo.jpg" width="420" height="600" /></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <?php
-                                        if(isset($_SESSION['err'])){
-                                            echo "<div class='alert alert-danger' role='alert'>".$_SESSION['err']."</div>";
-                                            unset($_SESSION['err']);
-                                        }
-                                    ?>
                                     <!--form -->
                                     <form class="user" method="post" action="login.php">
                                         <div class="form-group">
                                             <input type="hidden" class="form-control form-control-user" value="<?=$_SESSION['token']?>" name="token" id="token">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" name="email" required placeholder="Enter Email Address..." >
+                                            <input type="email" class="form-control form-control-user" name="email" required placeholder="Enter Email Address..." id="email" require>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="password"  placeholder="Enter Password..." required >
+                                            <input type="password" class="form-control form-control-user" name="password"  placeholder="Enter Password..." required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -52,7 +50,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block" type="submit" id="login">
+                                        <button class="btn btn-primary btn-user btn-block" type="submit" onclick="valid();">
                                             Login
                                         </button>
                                         <hr>
@@ -61,7 +59,14 @@
                                     <div class="text-center">
                                         <a class="small" href="ForgetPassword.php">Forgot Password?</a>
                                     </div>
-                                    
+                                    <hr>
+                                    <?php
+                                        if(isset($_SESSION['err'])){
+                                            echo "<div class='alert alert-danger'>".$_SESSION['err']."</div>";
+                                            unset($_SESSION['err']);
+                                        }
+                                    ?>
+                                    <div class='alert alert-danger' role='alert' id="error"></div>
                                 </div>
                             </div>
                         </div>
@@ -70,5 +75,31 @@
             </div>
         </div>
     </div>
-    
+    <script>
+        let email = document.getElementById('email');
+        let divError = document.getElementById('error');
+        divError.style.display = 'none';
+        
+        function valid(){
+            let valid = true;
+            let mailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            let arrError = [];
+            //Matching
+            let validemail = email.value.match(mailRegex);
+            //validation
+            if(validemail == null ){
+                arrError.push(`<p>is not valid Email</p>`);
+                valid= false;
+            }
+            //print error;
+            if(arrError.length > 0){
+                divError.innerHTML = arrError.join(" ");
+                arrError.length = 0;
+                divError.style.display = 'block';
+            }
+            if(valid === false){
+                event.preventDefault();
+            }
+        }
+    </script>
 </body>

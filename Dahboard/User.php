@@ -7,9 +7,8 @@
     include "database/DBClass.php";
     use DbClass\Table;
     $users = new Table('users');
-    $row = ['user_id','user_name','user_email','user_phone','role_title'];
-    $cond = ['roles_id'=>'role_id'];
-    $result = $users->InnerJoin('roles',$row,$cond);
+    $cond = "user_role".'='."'1'";
+    $result = $users->FindAll($cond);
     
     if(isset($_GET['add']) == 'User'){
         include "Users/AddForm.php";

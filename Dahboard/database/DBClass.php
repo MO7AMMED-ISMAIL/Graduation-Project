@@ -15,7 +15,7 @@ class Table extends Database{
     }
 
     public function FindAll($cond=1){
-        $sql = "SELECT * FROM {$this->TbName} WHERE ";
+        $sql = "SELECT * FROM {$this->TbName} WHERE ".$cond;
         $stmt = parent::connect()->prepare($sql);
         $stmt->execute(); 
         $result = $stmt->fetchAll();
@@ -108,7 +108,7 @@ class Table extends Database{
     }
 
     public function Login($email , $pass){
-        $sql = "SELECT * FROM {$this->TbName} WHERE admin_email = :em AND admin_password = :pass";
+        $sql = "SELECT * FROM {$this->TbName} WHERE user_email = :em AND user_password = :pass AND user_role = '0'";
         $stmt = parent::connect()->prepare($sql);
         $stmt->execute(['em' => $email , 'pass'=>$pass]);
         if($stmt->rowCount() > 0 ){

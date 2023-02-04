@@ -7,17 +7,15 @@
     include "database/DBClass.php";
     use DbClass\Table;
 
-    $visitors = new Table('visitors');
-    $row = ['visitor_id','visitor_name','visitor_email','visitor_phone','role_title'];
-    $cond = ['roles_id'=>'role_id'];
-    $result = $visitors->InnerJoin('roles',$row,$cond);
-    
+    $visitors = new Table('users');
+    $cond = "user_role".'='."'2'";
+    $result = $visitors->FindAll($cond);
     if(isset($_GET['add']) == 'Visitor'){
         include "Visitors/AddForm.php";
     }
     elseif(isset($_GET['edit'])){
         $VisitorId = $_GET['edit'];
-        $SelVisitor = $visitors->FindById('visitor_id',$VisitorId);
+        $SelVisitor = $visitors->FindById('user_id',$VisitorId);
         include "Visitors/EditForm.php";
     }else{
         include "Visitors/table.php";

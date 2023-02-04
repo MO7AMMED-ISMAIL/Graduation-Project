@@ -3,7 +3,7 @@
         $_SESSION['token'] = bin2hex(random_bytes(32));
         $_SESSION['token_expire'] = time() + 3600 ;
         if(isset($_GET['add']) == 'Visitor'){
-            $roles_id = 3;
+            $role = 2;
         }
     }else{
         header("location: ../Visitor.php");
@@ -23,22 +23,24 @@
                     <input type="hidden" class="form-control form-control-user" name="token" value="<?=$_SESSION['token']?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" placeholder="Enter User Name..." name="username">
+                    <input type="text" class="form-control form-control-user" placeholder="Enter User Name..." name="username" id="username">
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email">
+                    <input type="email" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" id="email">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control form-control-user" placeholder="Enter Password..." name="password">
+                    <input type="password" class="form-control form-control-user" placeholder="Enter Password..." name="password" id="password">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" placeholder="Enter Phone..." name="phone">
+                    <input type="text" class="form-control form-control-user" placeholder="Enter Phone..." name="phone" id="phone">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" placeholder="Password" name="role_id" value="<?= $roles_id == 3? 'Visitor':''?>" readonly>
+                    <input type="text" class="form-control form-control-user" placeholder="Password" name="role" value="<?= $role== 2 ? 'Visitor':''?>" readonly>
                 </div>
-                <button class="btn btn-primary btn-user btn-block" type="submit">ADD</button>
+                <button class="btn btn-primary btn-user btn-block" type="submit" onclick="valid();">ADD</button>
             </form>
+            <hr>
+            <div class='alert alert-danger' role='alert' id="error"></div>
         </div>
     </div>
 </div>

@@ -14,24 +14,30 @@ if($_POST['token'] == $_SESSION['token']){
     unset($_SESSION['token']);
 }
 
-$visitors = new Table('Visitors');
+$visitors = new Table('users');
 //validation
-$username = $visitors->inputData($_POST['username']);
-$password = $visitors->inputData($_POST['password']);
-$phone = $visitors->inputData($_POST['phone']);
-$email = $visitors->ValidateEmail($_POST['email']);
-$roles_id = $visitors->inputData($_POST['role_id']);
-$roles_id = $roles_id == 'Visitor' ? 3 : throw new Error('roles_id isnot valid');
+try{
+    $username = $visitors->inputData($_POST['username']);
+    $password = $visitors->inputData($_POST['password']);
+    $phone = $visitors->inputData($_POST['phone']);
+    $email = $visitors->ValidateEmail($_POST['email']);
+    $role = $visitors->inputData($_POST['role']);
+    $role = $role == 'Visitor' ? '2' : throw new Error('role isnot valid');
+}catch(Exception $e){
+    $_SESSION['err'] = $e->getMessage();
+}
+$password_ard = rand(1000000,99999999);
 //insert user
 $DataInsert = [
-    'visitor_name'=>$username,
-    'visitor_password'=>$password,
-    'visitor_email'=>$email,
-    'visitor_phone'=>$phone,
-    'roles_id'=>$roles_id,
+    'user_name'=>$username,
+    'user_password'=>$password,
+    'user_pass_ard'=>$password_ard,
+    'user_email'=>$email,
+    'user_phone'=>$phone,
+    'user_role'=>$role,
 ];
 $visitors->Create($DataInsert);
 header("location: ../visitor.php");
-
+exit();
 
 ?>

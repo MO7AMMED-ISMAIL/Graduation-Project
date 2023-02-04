@@ -23,13 +23,13 @@
                     ?>
                         <tr>
                             <td><?=$id++?></td>
-                            <td><?=$visitor['visitor_name']?></td>
-                            <td><?=$visitor['visitor_email']?></td>
-                            <td><?=$visitor['visitor_phone']?></td>
-                            <td><?=$visitor['role_title']?></td>
+                            <td><?=$visitor['user_name']?></td>
+                            <td><?=$visitor['user_email']?></td>
+                            <td><?=$visitor['user_phone']?></td>
+                            <td><?=$visitor['user_role']=='2'?'Visitor': ''?></td>
                             <td>
-                                <a class="btn action" href="visitors/delete.php?visitor_id=<?=$visitor['visitor_id']?>">Delete</a>
-                                <a class="btn action1" href="?edit=<?=$visitor['visitor_id']?>">Edit</a>
+                                <a class="btn action" href="visitors/delete.php?visitor_id=<?=$visitor['user_id']?>">Delete</a>
+                                <a class="btn action1" href="?edit=<?=$visitor['user_id']?>">Edit</a>
                             </td>
                         </tr>
                         <?php }?>

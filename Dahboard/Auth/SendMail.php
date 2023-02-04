@@ -10,6 +10,7 @@
     }catch(Exception $e){
         $_SESSION['err'] = $e->getMessage();
         header("location: forgetPassword.php");
+        exit();
     }
     $gmailUser = $SelAdmin['admin_email']; //mail to send rest password
 
@@ -20,10 +21,7 @@
 
     try {
         $mail = new PHPMailer(true);
-
         //$mail->SMTPDebug = SMTP::DEBUG_SERVER; //Show error
-                           //Enable verbose debug output
-         
         $mail->Host       = 'smtp.example.com'; 
         $mail->SMTPAuth   = true; 
         $mail->Username   = 'aspsmailer@gmail.com'; // your email 
@@ -31,15 +29,12 @@
         $mail->Port       = 456;
         //Recipients
         $mail->setFrom('aspsmailer@gmail.com', 'ASPS Team');
-        $mail->addAddress('dohaseif2@gmail.com'); 
-    
+        $mail->addAddress($gmailUser); 
         //Content
         $mail->isHTML(true); 
         $mail->Subject = 'Forgetten password message';
-        
         $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-    
         $mail->send();
         echo 'Message has been sent';
     } catch (Exception $e) {

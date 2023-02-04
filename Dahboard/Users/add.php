@@ -17,19 +17,25 @@ if($_POST['token'] == $_SESSION['token']){
 
 $users = new Table('users');
 //validation
-$username = $users->inputData($_POST['username']);
-$password = $users->inputData($_POST['password']);
-$phone = $users->inputData($_POST['phone']);
-$email = $users->ValidateEmail($_POST['email']);
-$roles_id = $users->inputData($_POST['role_id']);
-$roles_id = $roles_id == 'User' ? 2 : throw new Error('roles_id isnot valid');
+try{
+    $username = $users->inputData($_POST['username']);
+    $password = $users->inputData($_POST['password']);
+    $phone = $users->inputData($_POST['phone']);
+    $email = $users->ValidateEmail($_POST['email']);
+    $role = $users->inputData($_POST['role_id']);
+    $role = $role == 'User' ? '1' : throw new Error('roles_id isnot valid');
+}catch(Exception $e){
+    $_SESSION['err'] = $e->getMessage();
+}
+$password_ard = rand(1000000,99999999);
 //insert user
 $DataInsert = [
     'user_name'=>$username,
     'user_password'=>$password,
+    'user_pass_ard'=>$password_ard,
     'user_email'=>$email,
     'user_phone'=>$phone,
-    'roles_id'=>$roles_id,
+    'user_role'=>$role,
 ];
 $users->Create($DataInsert);
 header("location: ../User.php");

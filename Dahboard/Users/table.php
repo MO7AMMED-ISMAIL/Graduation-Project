@@ -25,7 +25,7 @@
                             <td><?=$user['user_name']?></td>
                             <td><?=$user['user_email']?></td>
                             <td><?=$user['user_phone']?></td>
-                            <td><?=$user['role_title']?></td>
+                            <td><?=$user['user_role']== 1 ? 'User':''?></td>
                             <td>
                                 <a class="btn action" href="Users/delete.php?user_id=<?=$user['user_id']?>">Delete</a>
                                 <a class="btn action1" href="?edit=<?=$user['user_id']?>">Edit</a>

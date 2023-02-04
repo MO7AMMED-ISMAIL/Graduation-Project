@@ -13,7 +13,6 @@
         rel="stylesheet">
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 </head>
-
 <body class="bg-gradient-primary">
     <div class="container">
         <div class="row justify-content-center">
@@ -26,7 +25,7 @@
                                 <div class="p-5">
                                     <?php
                                         if(isset($_SESSION['err'])){
-                                            echo "<div class='alert alert-danger' role='alert'>".$_SESSION['err']."</div>";
+                                            echo "<div class='alert alert-danger'>".$_SESSION['err']."</div>";
                                             unset($_SESSION['err']);
                                         }
                                     ?>
@@ -57,9 +56,7 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 </body>
-
 </html>

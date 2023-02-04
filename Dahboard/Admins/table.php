@@ -23,13 +23,13 @@
                     ?>
                         <tr>
                             <td><?=$id++?></td>
-                            <td><?=$admin['admin_name']?></td>
-                            <td><?=$admin['admin_email']?></td>
-                            <td><?=$admin['admin_phone']?></td>
-                            <td><?=$admin['role_title']?></td>
+                            <td><?=$admin['user_name']?></td>
+                            <td><?=$admin['user_email']?></td>
+                            <td><?=$admin['user_phone']?></td>
+                            <td><?=$admin['user_role']== '0'? 'admin': ''?></td>
                             <td>
-                                <a class="btn action" href="Admins/delete.php?admin_id=<?=$admin['admin_id']?>">Delete</a>
-                                <a class="btn action1" href="?edit=<?=$admin['admin_id']?>">Edit</a>
+                                <a class="btn action" href="Admins/delete.php?admin_id=<?=$admin['user_id']?>">Delete</a>
+                                <a class="btn action1" href="?edit=<?=$admin['user_id']?>">Edit</a>
                             </td>
                         </tr>
                         <?php }?>
