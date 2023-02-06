@@ -14,11 +14,12 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>role</th>
+                            <th>image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
+                    <?php   
                         foreach($result as $visitor){
                     ?>
                         <tr>
@@ -26,9 +27,28 @@
                             <td><?=$visitor['user_name']?></td>
                             <td><?=$visitor['user_email']?></td>
                             <td><?=$visitor['user_phone']?></td>
-                            <td><?=$visitor['user_role']=='2'?'Visitor': ''?></td>
+                            <td><?= 'Visitor'?></td>
+                           
+                           <td><?php
+
+                            $user_email=$visitor['user_email'];
+                            
+                            $cond = "email_user".'='."'$user_email'";
+
+                            $selectImages = $images->FindAll($cond);
+
+                        
+                            foreach($selectImages as $img){
+
+                              ?>
+
+                              <img src='uploads/<?= $img['image_path'] ?>' style="width:50px ; height: 50px;">
+                              <?php
+                            }
+                            ?>
+                        </td>
                             <td>
-                                <a class="btn action" href="visitors/delete.php?visitor_id=<?=$visitor['user_id']?>">Delete</a>
+                                <a class="btn action" href="Visitors/delete.php?visitor_id=<?=$visitor['user_id']?>">Delete</a>
                                 <a class="btn action1" href="?edit=<?=$visitor['user_id']?>">Edit</a>
                             </td>
                         </tr>
@@ -40,7 +60,6 @@
     </div>
 
 </div>
-
 </body>
 
 </html>

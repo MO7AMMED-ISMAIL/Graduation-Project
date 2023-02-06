@@ -1,3 +1,17 @@
+
+<?php
+include "database/DBClass.php";
+use DbClass\Table;
+ $admins = new Table('users');
+ $images = new Table('images');
+
+ $AdminId = $_SESSION['Admin_id'];
+ $SelAdmin = $admins->FindById('user_id',$AdminId);
+ $admin_email=$SelAdmin['user_email'];
+ $SelImage = $images->FindById('email_user',$admin_email);
+
+?>
+              
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -45,8 +59,8 @@
         <!-- Nav Item - User Information-->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Ahmed Elbalouty</span>
-                <img class="img-profile rounded-circle" src="img/ahmd.jpg">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $SelAdmin['user_name']; ?> </span>
+                <img class="img-profile rounded-circle" src="uploads/<?= $SelImage['image_path']; ?>">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

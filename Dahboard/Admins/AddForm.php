@@ -18,7 +18,7 @@
                 <h2 class="h4 text-gray-900 mb-4">Create New Admin</h2>
             </div>
 
-            <form action="Admins/add.php" method="post" class="user" enctype="multipart/form-data">
+            <form action="Admins/add.php" method="post" class="user" enctype="multipart/form-data" >
             <div class="form-group">
                     <input type="hidden" class="form-control form-control-user" name="token" value="<?=$_SESSION['token']?>">
                 </div>
@@ -36,6 +36,9 @@
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="Password" name="role" value="<?= $role == 0? 'Admin':''?>" readonly>
+                </div>
+                <div class="form-group">
+                    <input type="file" class="form-control form-control-user" placeholder="Enter image..." name="img[]" id="image" multiple> 
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block" onclick="valid()">ADD</button>
             </form>

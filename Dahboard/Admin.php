@@ -7,9 +7,11 @@
     $id = 1 ;
     include "include/sidebar.php";
     include "include/navbar.php";
-    include "database/DBClass.php";
+    // include "database/DBClass.php";
     use DbClass\Table;
     $admins = new Table('users');
+    $images= new Table('images');
+
     $cond = "user_role".'='."'0'";
     $result = $admins->FindAll($cond);
 
@@ -26,4 +28,3 @@
     
     include "include/footer.php";
 ?>
-

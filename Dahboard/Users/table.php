@@ -1,7 +1,8 @@
 <div class="container-fluid">
+    <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Table Users</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Table User</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -13,11 +14,12 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>role</th>
+                            <th>image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
+                    <?php   
                         foreach($result as $user){
                     ?>
                         <tr>
@@ -25,7 +27,26 @@
                             <td><?=$user['user_name']?></td>
                             <td><?=$user['user_email']?></td>
                             <td><?=$user['user_phone']?></td>
-                            <td><?=$user['user_role']== 1 ? 'User':''?></td>
+                            <td><?= 'User'?></td>
+                           
+                           <td><?php
+
+                            $user_email=$user['user_email'];
+                            
+                            $cond = "email_user".'='."'$user_email'";
+
+                            $selectImages = $images->FindAll($cond);
+
+                        
+                            foreach($selectImages as $img){
+
+                              ?>
+
+                              <img src='uploads/<?= $img['image_path'] ?>' style="width:50px ; height: 50px;">
+                              <?php
+                            }
+                            ?>
+                        </td>
                             <td>
                                 <a class="btn action" href="Users/delete.php?user_id=<?=$user['user_id']?>">Delete</a>
                                 <a class="btn action1" href="?edit=<?=$user['user_id']?>">Edit</a>
@@ -37,4 +58,8 @@
             </div>
         </div>
     </div>
+
 </div>
+</body>
+
+</html>

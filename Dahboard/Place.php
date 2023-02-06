@@ -2,10 +2,11 @@
     session_start();
     $current = 'Places';
     $id = 1;
+    
+    // include "database/DBClass.php";
+    use DbClass\Table;
     include "include/sidebar.php";
     include "include/navbar.php";
-    include "database/DBClass.php";
-    use DbClass\Table;
     $places = new Table('places');
     $result = $places->FindAll();
     

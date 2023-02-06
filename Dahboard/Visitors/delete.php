@@ -6,8 +6,8 @@ if(!isset($_GET['visitor_id'])){
     header("location: ../Visitor.php");
 }
 $id = $_GET['visitor_id'];
-$delAdmin = new Table('users');
-$delAdmin->Delete('user_id',$id);
+$delVisitor = new Table('users');
+$delVisitor->Delete('user_id',$id);
 header("location: ../Visitor.php");
-exit();
+
 ?>

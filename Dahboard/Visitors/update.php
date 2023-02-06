@@ -35,6 +35,7 @@ $DataUpdate = [
     "user_phone"=>$phone
 ];
 $updat = $update->Update($DataUpdate,'user_id',$id);
+
 header("location: ../visitor.php");
 exit();
 

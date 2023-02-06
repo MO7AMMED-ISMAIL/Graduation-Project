@@ -9,7 +9,11 @@ use PDO;
 class Table extends Database{
 
     public $TbName;
-    //private $conn = parent::connect();
+    public function conn(){
+     $conn = parent::connect();
+
+    }
+
     public function __construct($tableName){
         $this->TbName = $tableName;
     }

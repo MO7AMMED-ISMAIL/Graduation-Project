@@ -1,12 +1,12 @@
 <?php
-    if(isset($_GET['add']) == 'User'){
+    if(isset($_GET['add']) == 'Admin'){
         $_SESSION['token'] = bin2hex(random_bytes(32));
         $_SESSION['token_expire'] = time() + 3600 ;
-        if(isset($_GET['add']) == 'User'){
-            $role = 1;
+        if(isset($_GET['add']) == 'Admin'){
+            $role = 0;
         }
     }else{
-        header("location: ../User.php");
+        header("location: ../Admin.php");
     }
     
 ?>
@@ -17,7 +17,8 @@
             <div class="text-center">
                 <h2 class="h4 text-gray-900 mb-4">Create New User</h2>
             </div>
-            <form action="Users/add.php" method="post" class="user" enctype="multipart/form-data">
+
+            <form action="Users/add.php" method="post" class="user" enctype="multipart/form-data" >
             <div class="form-group">
                     <input type="hidden" class="form-control form-control-user" name="token" value="<?=$_SESSION['token']?>">
                 </div>
@@ -34,12 +35,17 @@
                     <input type="text" class="form-control form-control-user" placeholder="Enter Phone..." name="phone" id="phone">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" placeholder="Password" name="role_id" value="<?= $role == 1? 'User':''?>" readonly>
+                    <input type="text" class="form-control form-control-user" placeholder="Password" name="role" value="<?= $role == 0? 'User':''?>" readonly>
                 </div>
-                <button class="btn btn-primary btn-user btn-block" type="submit" onclick="valid();">ADD</button>
+                <div class="form-group">
+                    <input type="file" class="form-control form-control-user" placeholder="Enter image..." name="img[]" id="image" multiple> 
+                </div>
+                <button type="submit" class="btn btn-primary btn-user btn-block" onclick="valid()">ADD</button>
             </form>
             <hr>
             <div class='alert alert-danger' role='alert' id="error"></div>
         </div>
     </div>
 </div>
+
+
