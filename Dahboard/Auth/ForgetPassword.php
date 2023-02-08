@@ -2,6 +2,8 @@
     session_start();
     $_SESSION['token'] = bin2hex(random_bytes(32));
     $_SESSION['token_expire'] = time() + 3600;
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +38,7 @@
                                     </div>
                                     <form class="user" action="SendMail.php" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" placeholder="Enter Email Address..." required name="email">
+                                            <input type="email" class="form-control form-control-user"  placeholder="Enter Email Email..." required name="email">
                                         </div>
                                         <div class="form-group">
                                             <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
@@ -49,6 +51,8 @@
                                     <div class="text-center">
                                         <a class="small" href="LoginForm.php">Already have an account? Login!</a>
                                     </div>
+
+                               
                                 </div>
                             </div>
                         </div>

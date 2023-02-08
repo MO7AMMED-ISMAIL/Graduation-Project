@@ -50,7 +50,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block" type="submit" onclick="valid();">
+                                        <button class="btn btn-primary btn-user btn-block" type="submit" >
                                             Login
                                         </button>
                                         <hr>
@@ -59,7 +59,11 @@
                                     <div class="text-center">
                                         <a class="small" href="ForgetPassword.php">Forgot Password?</a>
                                     </div>
+                                    <div class="text-center">
+                                        <a class="small" href="registerForm.php">Create a new account!</a>
+                                    </div>
                                     <hr>
+                                    
                                     <?php
                                         if(isset($_SESSION['err'])){
                                             echo "<div class='alert alert-danger'>".$_SESSION['err']."</div>";
@@ -67,6 +71,7 @@
                                         }
                                     ?>
                                     <div class='alert alert-danger' role='alert' id="error"></div>
+                                    
                                 </div>
                             </div>
                         </div>

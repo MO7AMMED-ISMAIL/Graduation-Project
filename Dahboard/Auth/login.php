@@ -21,6 +21,7 @@ try{
     $admin = $admins->Login($email,$password);
     $_SESSION['Admin_id'] = $admin['user_id'];
     header("location: ../index.php");
+   
 
 }catch(Exception $e){
     $_SESSION['err'] = $e->getMessage();
