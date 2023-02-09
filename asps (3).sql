@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2023 at 05:32 PM
+-- Generation Time: Feb 09, 2023 at 11:00 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -86,7 +86,8 @@ INSERT INTO `images` (`image_id`, `image_path`, `email_user`) VALUES
 (92, 'bd6520cea901cdf78f77c61ea8db1d1d.jpg', 'mahmoud@mailinator.com'),
 (93, 'be3daf7eec124b03fe90ef5b3e983a16.jpg', 'mahmoud@mailinator.com'),
 (94, 'cd17feaa305682b557bb4f65d3082d33.jpg', 'mohmoud@mailinator.com'),
-(95, '1a241dc3bdd03d9f8629fba322c2d899.jpg', 'mohmoud@mailinator.com');
+(95, '1a241dc3bdd03d9f8629fba322c2d899.jpg', 'mohmoud@mailinator.com'),
+(97, '63e56ca22a4b7.jpg', 'mosalah@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -157,7 +158,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_pass_ard`, `user_phone`, `user_role`) VALUES
-(134, 'Karim Ahmed', 'Karim@gmail.com', 'Asslo10923!', 10142822, '01113254877', '2'),
+(134, 'Karim Ahmed', 'Karim@gmail.com', 'Asslo10923!DD12', 10142822, '01113254877', '2'),
 (137, 'coxihaly', 'mola@mailinator.com', 'Pa$$w0rd!', 15933442, '01122555211', '2'),
 (140, 'Ahmed Sameeh', 'ahmed@mailinator.com', 'Aswed123!', 42606050, '01245256991', '1'),
 (141, 'dacerymen', 'baquxa@mailinator.com', 'Pa$$w0rd!', 27535086, '01111144255', '1'),
@@ -166,7 +167,8 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `use
 (148, 'Amir Ali', 'ali@mailinator.com', 'A!jha233', 18354182, '01111111141', '2'),
 (149, 'Leanne Graham', 'Sincere@gmail.com', 'lena2556@s', 14785963, '01008701177', '1'),
 (150, 'Hloee evain', 'evain145@gmail.com', 'eiroA@142', 25896347, '01000101101', '1'),
-(152, 'Mohammed Ismail', 'mo7medismail200@gmail.com', 'MoIsmail99', 62514890, '01025027924', '0');
+(152, 'Mohammed Ismail', 'mo7medismail200@gmail.com', 'MoIsmail99@1499', 62514890, '01025027924', '0'),
+(156, 'Mohamed Salah', 'mosalah@gmail.com', 'Medo3122000', 73345946, '01033830062', '0');
 
 --
 -- Indexes for dumped tables
@@ -243,7 +245,7 @@ ALTER TABLE `emails`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -267,7 +269,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- Constraints for dumped tables
