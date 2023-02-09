@@ -14,15 +14,14 @@ if($_POST['token'] == $_SESSION['token']){
     unset($_SESSION['token']);
 }
 $admins = new Table('users');
-$email = $admins->ValidateEmail($_POST['email']);
-$password = $admins->inputData($_POST['password']);
-
 try{
-    $admin = $admins->Login($email,$password);
+    $email = $admins->ValidateEmail($_POST['email']);
+    $password = $admins->inputData($_POST['password']);
+    $user_role = ['user_role'=>'0'];
+    $admin = $admins->Login($email,$password,$user_role);
     $_SESSION['Admin_id'] = $admin['user_id'];
     header("location: ../index.php");
-   
-
+    exit();
 }catch(Exception $e){
     $_SESSION['err'] = $e->getMessage();
     header("location: LoginForm.php");

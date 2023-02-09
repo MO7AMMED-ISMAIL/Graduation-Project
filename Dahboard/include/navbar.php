@@ -1,16 +1,14 @@
 <?php
-include "database/DBClass.php";
-use DbClass\Table;
- $admins = new Table('users');
- $images = new Table('images');
- 
- $AdminId = $_SESSION['Admin_id'];
- $SelAdmin = $admins->FindById('user_id',$AdminId);
- $admin_email=$SelAdmin['user_email'];
- $SelImage = $images->FindById('email_user',$admin_email);
-
+    include "database/DBClass.php";
+    use DbClass\Table;
+    $admins = new Table('users');
+    $images = new Table('images');
+    $AdminId = $_SESSION['Admin_id'];
+    $SelAdmin = $admins->FindById('user_id',$AdminId);
+    $admin_email=$SelAdmin['user_email'];
+    $SelImage = $images->FindById('email_user',$admin_email);
 ?>
-              
+
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 

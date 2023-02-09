@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2023 at 02:14 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Feb 09, 2023 at 05:32 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -91,6 +91,19 @@ INSERT INTO `images` (`image_id`, `image_path`, `email_user`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `mes_id` int(11) NOT NULL,
+  `mes_content` text NOT NULL,
+  `mes_from` varchar(255) NOT NULL,
+  `mes_to` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `places`
 --
 
@@ -146,12 +159,14 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_pass_ard`, `user_phone`, `user_role`) VALUES
 (134, 'Karim Ahmed', 'Karim@gmail.com', 'Asslo10923!', 10142822, '01113254877', '2'),
 (137, 'coxihaly', 'mola@mailinator.com', 'Pa$$w0rd!', 15933442, '01122555211', '2'),
-(139, 'Amir Ali', 'ali@mailinator.com', 'A!jha233', 18354182, '01111111141', '2'),
 (140, 'Ahmed Sameeh', 'ahmed@mailinator.com', 'Aswed123!', 42606050, '01245256991', '1'),
 (141, 'dacerymen', 'baquxa@mailinator.com', 'Pa$$w0rd!', 27535086, '01111144255', '1'),
-(142, 'cejafasep', 'depuvor@mailinator.com', 'Pa$$w0rd!!A', 54637569, '01122555211', '0'),
 (144, 'Hesham Ahmed', 'hesham@mailinator.com', '123', 14450477, '01122555211', '0'),
-(147, 'Mahmoud Wael', 'mohmoud@mailinator.com', 'Pa$$w0rd!!A', 71350033, '01224364520', '0');
+(147, 'Mahmoud Wael', 'mohmoud@mailinator.com', 'Pa$$w0rd!!A', 71350033, '01224364520', '0'),
+(148, 'Amir Ali', 'ali@mailinator.com', 'A!jha233', 18354182, '01111111141', '2'),
+(149, 'Leanne Graham', 'Sincere@gmail.com', 'lena2556@s', 14785963, '01008701177', '1'),
+(150, 'Hloee evain', 'evain145@gmail.com', 'eiroA@142', 25896347, '01000101101', '1'),
+(152, 'Mohammed Ismail', 'mo7medismail200@gmail.com', 'MoIsmail99', 62514890, '01025027924', '0');
 
 --
 -- Indexes for dumped tables
@@ -178,6 +193,14 @@ ALTER TABLE `emails`
 ALTER TABLE `images`
   ADD PRIMARY KEY (`image_id`),
   ADD KEY `user_email` (`email_user`);
+
+--
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`mes_id`),
+  ADD KEY `mes_from` (`mes_from`),
+  ADD KEY `mes_to` (`mes_to`);
 
 --
 -- Indexes for table `places`
@@ -223,6 +246,12 @@ ALTER TABLE `images`
   MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `mes_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
@@ -238,7 +267,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- Constraints for dumped tables
@@ -256,6 +285,13 @@ ALTER TABLE `attendance`
 ALTER TABLE `emails`
   ADD CONSTRAINT `emails_ibfk_1` FOREIGN KEY (`email_from`) REFERENCES `users` (`user_email`),
   ADD CONSTRAINT `emails_ibfk_2` FOREIGN KEY (`email_to`) REFERENCES `users` (`user_email`);
+
+--
+-- Constraints for table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`mes_from`) REFERENCES `users` (`user_email`),
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`mes_to`) REFERENCES `users` (`user_email`);
 
 --
 -- Constraints for table `posts`

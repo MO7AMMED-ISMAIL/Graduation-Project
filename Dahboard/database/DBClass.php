@@ -2,16 +2,14 @@
 namespace DbClass;
 require "connect.php";
 use base\Database;
-use Error;
 use Exception;
-use PDO;
+
 
 class Table extends Database{
 
     public $TbName;
     public function conn(){
-     $conn = parent::connect();
-
+        $conn = parent::connect();
     }
 
     public function __construct($tableName){
@@ -101,18 +99,25 @@ class Table extends Database{
         $targetFilePath = $targetDir . $fileName;
         $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
         $allowTypes = array('jpg','png','jpeg','gif');
-        
         if(in_array($fileType, $allowTypes)){
             if(move_uploaded_file($image["tmp_name"], $targetFilePath)){
-                $arr = ["image"=>$targetFilePath];
+                $arr = ["image_path"=>$targetFilePath];
                 $this->TbName = 'images';
                 self::Create($arr);
             }
         }
     }
 
-    public function Login($email , $pass){
-        $sql = "SELECT * FROM {$this->TbName} WHERE user_email = :em AND user_password = :pass AND user_role = '0'";
+    public function Login($email , $pass , $role='0'){
+        if(is_array($role)){
+            $keys = array_keys($role);
+            $key = implode(',', $keys);
+            $values = array_values($role);
+            $value = implode(',', $values);
+            $sql = "SELECT * FROM {$this->TbName} WHERE user_email = :em AND user_password = :pass AND $key = '$value'";
+        }else{
+            $sql = "SELECT * FROM {$this->TbName} WHERE user_email = :em AND user_password = :pass";
+        }
         $stmt = parent::connect()->prepare($sql);
         $stmt->execute(['em' => $email , 'pass'=>$pass]);
         if($stmt->rowCount() > 0 ){
@@ -122,18 +127,6 @@ class Table extends Database{
             throw new Exception("email or passwor is not valid");
         }
     }
-
 }
-/* 
-    $admin = new Table('admins');
-    $user = $admin->FindAll();
-    echo "<pre>";
-    print_r($user);
-    echo "</pre>";
-*/
-// $admin = new Table('admins');
-// $user = $admin->InnerJoin('roles' , 'role_id');
-// echo "<pre>";
-// print_r($user);
 
 ?>
