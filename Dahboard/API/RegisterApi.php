@@ -4,25 +4,27 @@ include "../database/DBClass.php";
 use DbClass\Table;
 session_start();
 header('content-type:application/json');
-$users = new Table('users');
-
+$user = new Table('users');
+$output = ["flag"=>'0' , 'message'=>''];
 
 //validation
 try{
-    $username = $users->inputData($_POST['username']);
-    $password = $users->inputData($_POST['password']);
-    $phone = $users->inputData($_POST['phone']);
-    $email = $users->ValidateEmail($_POST['email']);
-    $role = $users->inputData($_POST['role']);
-    // $role = $role == 'User' ? '1' : throw new Error('role isnot valid');
+    $username = $user->inputData($_POST['username']);
+    $password = $user->inputData($_POST['password']);
+    $repeatPassword = $user->inputData($_POST['repeatPassword']);
+    $phone = $user->inputData($_POST['phone']);
+    $email = $user->ValidateEmail($_POST['email']);
+    $role = $user->inputData($_POST['role']);
+    $output['flag']= 1;
 }catch(Exception $e){
-    $_SESSION['err'] = $e->getMessage();
+
+    $output['message']= $e->getMessage();
     header("location: ../User.php?add=User");
     exit();
 }
 $password_ard = rand(1000000,99999999);
-
 //insert user
+if($password === $repeatPassword){
 $DataInsert = [
     'user_name'=>$username,
     'user_password'=>$password,
@@ -31,15 +33,19 @@ $DataInsert = [
     'user_phone'=>$phone,
     'user_role'=>$role,
 ];
-$users->Create($DataInsert);
 
-$SelAdmin = $users->FindById('user_email',$email);
+$user->Create($DataInsert);
+$SelAdmin = $user->FindById('user_email',$email);
 $_SESSION['id_admin'] = $SelAdmin['user_id']; 
+
+$addImage = $user->Upload($_FILES['image'],$email);
+}else{
+     throw new Exception("The new password does not match");
+}
+
 include "SendMail.php";
 
-if ($users) {
-    echo json_encode(["status"=>"success"]);
-}
-else {
-	echo json_encode("error");
-}
+echo json_encode($output);
+
+?>
+
