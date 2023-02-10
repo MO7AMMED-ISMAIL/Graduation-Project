@@ -1,3 +1,4 @@
+
 <?php
     if(isset($_GET['edit'])){
         $_SESSION['token'] = bin2hex(random_bytes(32));
@@ -34,9 +35,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="Enter Phone..." name="phone" value="<?=$SelAdmin['user_phone']?>" id="phone">
                 </div>
-                 <div class="form-group">
-                    <input type="file" class="form-control form-control-user" placeholder="Enter image..." name="img[]" id="image" multiple> 
-                </div>
+                 
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="Password" name="roles_id" value="Admin" readonly>
                 </div>
