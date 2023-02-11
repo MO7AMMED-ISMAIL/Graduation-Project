@@ -17,10 +17,7 @@ try{
     $role = $user->inputData($_POST['role']);
     $output['flag']= 1;
 }catch(Exception $e){
-
     $output['message']= $e->getMessage();
-    header("location: ../User.php?add=User");
-    exit();
 }
 $password_ard = rand(1000000,99999999);
 //insert user
@@ -31,19 +28,17 @@ $DataInsert = [
     'user_pass_ard'=>$password_ard,
     'user_email'=>$email,
     'user_phone'=>$phone,
-    'user_role'=>$role,
+    'user_role'=>1,
 ];
 
 $user->Create($DataInsert);
 $SelAdmin = $user->FindById('user_email',$email);
 $_SESSION['id_admin'] = $SelAdmin['user_id']; 
 
-$addImage = $user->Upload($_FILES['image'],$email);
 }else{
      throw new Exception("The new password does not match");
 }
 
-include "SendMail.php";
 
 echo json_encode($output);
 

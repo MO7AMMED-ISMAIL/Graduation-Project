@@ -6,8 +6,8 @@
     
       
     
-    $gmailUser = $SelAdmin['user_email']; //mail to send rest password
-    $nameUser = $SelAdmin['user_name'];
+    $gmailUser = $SelUser['user_email']; //mail to send rest password
+    $nameUser = $SelUser['user_name'];
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
