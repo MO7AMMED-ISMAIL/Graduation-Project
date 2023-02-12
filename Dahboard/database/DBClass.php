@@ -93,7 +93,7 @@ class Table extends Database{
     }
 
     
-    function Upload($image){
+    function Upload($image,$email){
         $targetDir = "../uploads/";
         $fileName = basename($image["name"]);
         $targetFilePath = $targetDir . $fileName;
@@ -101,7 +101,10 @@ class Table extends Database{
         $allowTypes = array('jpg','png','jpeg','gif');
         if(in_array($fileType, $allowTypes)){
             if(move_uploaded_file($image["tmp_name"], $targetFilePath)){
-                $arr = ["image_path"=>$targetFilePath];
+                $arr = [
+                    "image_path"=>uniqid().".".$fileType,
+                    "email_user"=>$email
+                ];
                 $this->TbName = 'images';
                 self::Create($arr);
             }

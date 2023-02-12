@@ -16,7 +16,7 @@ if($_POST['token'] == $_SESSION['token']){
 
 $admins = new Table('users');
 $images = new Table('images');
-         
+
 
 //validation
 try{
@@ -41,14 +41,13 @@ foreach ($img['name'] as $key => $value) {
     $extensions = ['jpg','jpeg','gif','png'];
     $ext =pathinfo($img['name'][$key],PATHINFO_EXTENSION);
     if($extensions=$ext){
-          
-          
-          if($img['size'][$key]<200000){
-                 $newImageName = md5(uniqid()).'.'.$ext;
-                 move_uploaded_file($tmp, "../uploads/".$newImageName);
-                 array_push($array, $newImageName);
-             }
+        
+        if($img['size'][$key]<200000){
+            $newImageName = md5(uniqid()).'.'.$ext;
+            move_uploaded_file($tmp, "../uploads/".$newImageName);
+            array_push($array, $newImageName);
         }
+    }
 }
 
 //insert user

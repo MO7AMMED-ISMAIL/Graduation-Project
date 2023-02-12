@@ -49,7 +49,7 @@
             <!-- Admin -->
             <li class="nav-item <?=$current == 'Admin'? 'active':''?>">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" href="#">
-                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-user"></i>
                     <span>Admins</span>
                 </a>
                 <div id="collapseTwo" class="collapse <?=$current == 'Admin'? 'show':''?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -113,7 +113,53 @@
             </li>
             <!-- End Rooms  --->
 
-    
+            <!-- Post -->
+            <li class="nav-item <?=$current == 'Post'? 'active':''?>">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities4" aria-expanded="true" aria-controls="collapseUtilities4">
+                    <i class="fa-solid fa-pencil"></i>
+                    <span>Posts</span>
+                </a>
+                <div id="collapseUtilities4" class="collapse <?=$current == 'Post'?'show':''?>" aria-labelledby="headingUtilities4" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item <?=!isset($_GET['add'])== 'Post'?'active':''?>" href="Post.php">Display</a>
+                        <a class="collapse-item <?=isset($_GET['add'])== 'Post'?'active':''?>" href="Post.php?add=Post"><span style="font-weight:bold">+</span>Add</a>
+                    </div>
+                </div>
+            </li>
+            <!-- End Post -->
+
+            <!-- Messsage -->
+            <li class="nav-item <?=$current == 'Message'? 'active':''?>">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities5" aria-expanded="true" aria-controls="collapseUtilities5">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Message</span>
+                </a>
+                <div id="collapseUtilities5" class="collapse <?=$current == 'Message'?'show':''?>" aria-labelledby="headingUtilities5" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item <?=!isset($_GET['add'])== 'Mes'?'active':''?>" href="Message.php">Display</a>
+                        <a class="collapse-item <?=isset($_GET['add'])== 'Messsage'?'active':''?>" href="Message.php?add=Mes"><span style="font-weight:bold">+</span>Add</a>
+                    </div>
+                </div>
+            </li>
+            <!-- End Messsage -->
+
+            <!-- Tasks -->
+            <li class="nav-item <?=$current == 'Task'? 'active':''?>">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities6" aria-expanded="true" aria-controls="collapseUtilities6">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Task</span>
+                </a>
+                <div id="collapseUtilities6" class="collapse <?=$current == 'Task'?'show':''?>" aria-labelledby="headingUtilities6" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item <?=!isset($_GET['add'])== 'Task'?'active':''?>" href="Task.php">Display</a>
+                        <a class="collapse-item <?=isset($_GET['add'])== 'Task'?'active':''?>" href="Task.php?add=task"><span style="font-weight:bold">+</span>Add</a>
+                    </div>
+                </div>
+            </li>
+            <!-- End Tasks -->
             <li class="nav-item">
                 <a class="nav-link" href="Attendance.php">
                     <i class="fa-solid fa-eye"></i>

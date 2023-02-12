@@ -4,7 +4,6 @@ use PDO;
 use PDOException;
 
 class Database{
-    
     static protected $connection = false ;
     private $server = 'localhost';
     private $root = "root";

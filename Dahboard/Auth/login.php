@@ -20,6 +20,7 @@ try{
     $user_role = ['user_role'=>'0'];
     $admin = $admins->Login($email,$password,$user_role);
     $_SESSION['Admin_id'] = $admin['user_id'];
+    $_SESSION['Admin_email'] = $admin['user_email'];
     header("location: ../index.php");
     exit();
 }catch(Exception $e){
