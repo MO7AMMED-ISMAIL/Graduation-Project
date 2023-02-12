@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2023 at 11:00 PM
+-- Generation Time: Feb 12, 2023 at 05:20 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -36,19 +36,6 @@ CREATE TABLE `attendance` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `emails`
---
-
-CREATE TABLE `emails` (
-  `email_id` int(11) NOT NULL,
-  `email_content` text NOT NULL,
-  `email_from` varchar(255) NOT NULL,
-  `email_to` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `images`
 --
 
@@ -63,30 +50,7 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`image_id`, `image_path`, `email_user`) VALUES
-(72, '2d9d07fda917b12fb2f3d1d43e5ebdf7.jpg', 'Karim@gmail.com'),
 (73, 'f81f26c51807016aa64b445f46f38b5d.jpg', 'Karim@gmail.com'),
-(74, '4e2fe3cd0ecda87de4370dbed8b04910.jpg', 'eslam@gmail.com'),
-(75, '50cd4d51235b1b7c3c8b752230c84d5e.jpg', 'eslam@gmail.com'),
-(76, '1e5feda10bf9e5d83a097f59a23c5415.jpg', 'ibrahem@mailinator.com'),
-(77, 'ed72e9a455f98b047a52073a7b719190.jpg', 'mola@mailinator.com'),
-(78, 'cc2291ee90d4c4e155e3721b629c950f.png', 'mola@mailinator.com'),
-(79, 'b1d0397bf34b515f552fd949c87a562a.png', 'gafevag@mailinator.com'),
-(80, '5fcb15853b7748556884a857204876cd.jpg', 'ali@mailinator.com'),
-(81, 'f8fc319f44110b87f6139ba413e684c9.jpg', 'ali@mailinator.com'),
-(82, '8f4a780e6f7a0e9c8c152c7e30f3b0b6.jpg', 'ahmed@mailinator.com'),
-(83, '7fa5dc8fd221a6f9799371e5ec369302.png', 'ahmed@mailinator.com'),
-(84, 'b6ae29817a8f951d8a12a79baec8adc8.jpg', 'baquxa@mailinator.com'),
-(85, '4783f3f83fd8a50bbf6d776fa0a0a630.jpg', 'baquxa@mailinator.com'),
-(86, '698836299daee6b6b10745eb1a6dc2f2.jpg', 'depuvor@mailinator.com'),
-(87, 'bb717032f1af9be35fbae31f12fc63d3.jpg', 'depuvor@mailinator.com'),
-(88, '7314028db6b38a450f130adf7e18ad63.jpg', 'pecyry@mailinator.com'),
-(89, '0a2054de419cf4c26217867f46e1e540.jpg', 'hesham@mailinator.com'),
-(90, '796d52144ce202935ec84177a1e2c6e4.jpg', 'hesham@mailinator.com'),
-(91, 'bbdb247e3ebec76e1ca837fd03471166.jpg', 'mahmoud@mailinator.com'),
-(92, 'bd6520cea901cdf78f77c61ea8db1d1d.jpg', 'mahmoud@mailinator.com'),
-(93, 'be3daf7eec124b03fe90ef5b3e983a16.jpg', 'mahmoud@mailinator.com'),
-(94, 'cd17feaa305682b557bb4f65d3082d33.jpg', 'mohmoud@mailinator.com'),
-(95, '1a241dc3bdd03d9f8629fba322c2d899.jpg', 'mohmoud@mailinator.com'),
 (97, '63e56ca22a4b7.jpg', 'mosalah@gmail.com');
 
 -- --------------------------------------------------------
@@ -101,6 +65,14 @@ CREATE TABLE `messages` (
   `mes_from` varchar(255) NOT NULL,
   `mes_to` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`mes_id`, `mes_content`, `mes_from`, `mes_to`) VALUES
+(1, 'message1', 'mo7medismail200@gmail.com', 'ahmed@mailinator.com'),
+(2, 'message2.2', 'mosalah@gmail.com', 'ali@mailinator.com');
 
 -- --------------------------------------------------------
 
@@ -134,8 +106,39 @@ CREATE TABLE `posts` (
   `post_id` int(11) NOT NULL,
   `post_title` varchar(255) NOT NULL,
   `post_content` text NOT NULL,
-  `users_id` int(11) NOT NULL
+  `users_id` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`post_id`, `post_title`, `post_content`, `users_id`, `date`) VALUES
+(1, 'TITLE1.1', 'the first posts1.1', 156, '2023-02-10 18:46:45'),
+(2, 'api title', 'updated content api 2', 152, '2023-02-10 20:31:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tasks`
+--
+
+CREATE TABLE `tasks` (
+  `task_id` int(11) NOT NULL,
+  `task_content` text NOT NULL,
+  `task_from` varchar(255) NOT NULL,
+  `task_To` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`task_id`, `task_content`, `task_from`, `task_To`) VALUES
+(1, 'task1', 'mosalah@gmail.com', 'Sincere@gmail.com'),
+(2, 'task2', 'mo7medismail200@gmail.com', 'ahmed@mailinator.com'),
+(3, 'task3', 'mosalah@gmail.com', 'ahmed@mailinator.com');
 
 -- --------------------------------------------------------
 
@@ -166,7 +169,6 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `use
 (147, 'Mahmoud Wael', 'mohmoud@mailinator.com', 'Pa$$w0rd!!A', 71350033, '01224364520', '0'),
 (148, 'Amir Ali', 'ali@mailinator.com', 'A!jha233', 18354182, '01111111141', '2'),
 (149, 'Leanne Graham', 'Sincere@gmail.com', 'lena2556@s', 14785963, '01008701177', '1'),
-(150, 'Hloee evain', 'evain145@gmail.com', 'eiroA@142', 25896347, '01000101101', '1'),
 (152, 'Mohammed Ismail', 'mo7medismail200@gmail.com', 'MoIsmail99@1499', 62514890, '01025027924', '0'),
 (156, 'Mohamed Salah', 'mosalah@gmail.com', 'Medo3122000', 73345946, '01033830062', '0');
 
@@ -180,14 +182,6 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `use
 ALTER TABLE `attendance`
   ADD PRIMARY KEY (`attendance_id`),
   ADD KEY `Place_id` (`place_id`);
-
---
--- Indexes for table `emails`
---
-ALTER TABLE `emails`
-  ADD PRIMARY KEY (`email_id`),
-  ADD KEY `email_from` (`email_from`),
-  ADD KEY `email_to` (`email_to`);
 
 --
 -- Indexes for table `images`
@@ -218,6 +212,14 @@ ALTER TABLE `posts`
   ADD KEY `admins_id` (`users_id`);
 
 --
+-- Indexes for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD PRIMARY KEY (`task_id`),
+  ADD KEY `task_from` (`task_from`),
+  ADD KEY `task_To` (`task_To`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -236,12 +238,6 @@ ALTER TABLE `attendance`
   MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `emails`
---
-ALTER TABLE `emails`
-  MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
@@ -251,7 +247,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `mes_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `places`
@@ -263,7 +259,13 @@ ALTER TABLE `places`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -282,11 +284,10 @@ ALTER TABLE `attendance`
   ADD CONSTRAINT `Place_id` FOREIGN KEY (`place_id`) REFERENCES `places` (`place_id`);
 
 --
--- Constraints for table `emails`
+-- Constraints for table `images`
 --
-ALTER TABLE `emails`
-  ADD CONSTRAINT `emails_ibfk_1` FOREIGN KEY (`email_from`) REFERENCES `users` (`user_email`),
-  ADD CONSTRAINT `emails_ibfk_2` FOREIGN KEY (`email_to`) REFERENCES `users` (`user_email`);
+ALTER TABLE `images`
+  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`email_user`) REFERENCES `users` (`user_email`);
 
 --
 -- Constraints for table `messages`
@@ -300,6 +301,13 @@ ALTER TABLE `messages`
 --
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`task_from`) REFERENCES `users` (`user_email`),
+  ADD CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`task_To`) REFERENCES `users` (`user_email`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
