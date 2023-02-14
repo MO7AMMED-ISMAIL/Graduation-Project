@@ -2,14 +2,14 @@
 include "../../database/DBClass.php";
 include "../header.php";
 use DbClass\Table;
-$task = new Table('tasks');
+$tasks = new Table('tasks');
 $output = ["flag"=>'0' , 'message'=>''];
 try{
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if($_GET['email']){
             $email = $_GET['email'];
             $cond = "task_to".'='."'$email'";
-            $task = $message->FindAll($cond);
+            $task = $tasks->FindAll($cond);
             $output['flag']= 1;
             $output['message'] = "data is Selected";
             $output['data']= $task;
