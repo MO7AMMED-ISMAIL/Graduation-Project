@@ -3,7 +3,7 @@
 include "../database/DBClass.php";
 use DbClass\Table;
 session_start();
-header('content-type:application/json');
+include "../header.php";
 $user = new Table('users');
 $output = ["flag"=>'0' , 'message'=>''];
 
