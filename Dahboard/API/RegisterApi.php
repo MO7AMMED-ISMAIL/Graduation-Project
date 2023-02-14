@@ -36,7 +36,7 @@ $SelAdmin = $user->FindById('user_email',$email);
 $_SESSION['id_admin'] = $SelAdmin['user_id']; 
 
 }else{
-     throw new Exception("The new password does not match");
+    throw new Exception("The new password does not match");
 }
 
 

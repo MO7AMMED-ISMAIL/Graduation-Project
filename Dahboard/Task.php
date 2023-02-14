@@ -19,7 +19,7 @@
         include "Tasks/AddForm.php";  
     }elseif(isset($_GET['edit'])){
         $taskID = $_GET['edit'];
-        $SelTask = $messages->FindById('task_id',$taskID);
+        $SelTask = $tasks->FindById('task_id',$taskID);
         include "Tasks/EditForm.php";
     }
     else{

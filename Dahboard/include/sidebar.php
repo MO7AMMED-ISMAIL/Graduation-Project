@@ -100,7 +100,7 @@
             <!-- Rooms  --->
             <li class="nav-item <?=$current == 'Places'? 'active':''?>">
                 <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities3" aria-expanded="true" aria-controls="collapseUtilities3">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-tags"></i>
                     <span>Rooms</span>
                 </a>
                 <div id="collapseUtilities3" class="collapse <?=$current == 'Places'?'show':''?>" aria-labelledby="headingUtilities3" data-parent="#accordionSidebar">
@@ -148,7 +148,7 @@
             <!-- Tasks -->
             <li class="nav-item <?=$current == 'Task'? 'active':''?>">
                 <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities6" aria-expanded="true" aria-controls="collapseUtilities6">
-                    <i class="fa-solid fa-envelope"></i>
+                    <i class="fas fa-tasks"></i>
                     <span>Task</span>
                 </a>
                 <div id="collapseUtilities6" class="collapse <?=$current == 'Task'?'show':''?>" aria-labelledby="headingUtilities6" data-parent="#accordionSidebar">

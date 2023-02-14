@@ -29,11 +29,11 @@
                                 <?php
                                     if($task['task_from'] == $_SESSION['Admin_email']){
                                 ?>
-                                <a class="btn action" href="Tasks/delete.php?mes_id=<?=$task['task_id']?>">Delete</a>
+                                <a class="btn action" href="Tasks/delete.php?task_id=<?=$task['task_id']?>">Delete</a>
                                 <a class="btn action1" href="Task.php?edit=<?=$task['task_id']?>">Edit</a>
                             </td>
                             <?php }else{?>
-                            <a class="btn action1" href="?view=mes" data-toggle="modal" data-target="#logoutModal">View</a>
+                            <a class="btn action1" href="?view=task">View</a>
                             <?php } ?>
                         </tr>
                         <?php }?>

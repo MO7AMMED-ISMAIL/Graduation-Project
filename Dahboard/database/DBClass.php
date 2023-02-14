@@ -32,13 +32,17 @@ class Table extends Database{
             $result = $Sel->fetch();
             return $result;
         }else{
-            throw new Exception("email is not Found");
+            throw new Exception("is not Found");
         }
     }
 
     public function Delete($cond , $value) {
-        $stmt = parent::connect()->prepare("DELETE FROM {$this->TbName} WHERE {$cond} = {$value}");
-        $stmt->execute();
+        try{
+            $stmt = parent::connect()->prepare("DELETE FROM {$this->TbName} WHERE {$cond} = {$value}");
+            $stmt->execute();
+        }catch(Exception $e){
+            throw new Exception("cant found this table");
+        }
     }
 
     public function Update(array $data , $cond , $value){
