@@ -33,7 +33,7 @@
                     <input type="text" class="form-control form-control-user" placeholder="Enter Phone..." name="phone" value="<?=$SelAdmin['user_phone']?>" id="phone">
                 </div>
                  <div class="form-group">
-                    <input type="file" class="form-control form-control-user" placeholder="Enter image..." name="img[]" id="image" multiple value="<?=$SelImage['image_path']?>" > 
+                    <input type="password" class="form-control form-control-user" placeholder="Enter Password..." name="password" id="password" value="<?=$SelAdmin['user_password']?>" disabled>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="Password" name="roles_id" value="Admin" readonly>

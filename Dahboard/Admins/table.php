@@ -1,3 +1,15 @@
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $('form').submit(function(event){
+    event.preventDefault();
+    $.post('updateImage',{
+        image : $('input:first').val()
+    },function(data){})
+    console.log(data);
+    })
+
+</script>
+
 <div class="container-fluid">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -41,6 +53,7 @@
                             <td>
                                 <a class="btn action" href="Admins/delete.php?admin_id=<?=$admin['user_id']?>&admin_email=<?=$admin['user_email']?>">Delete</a>
                                 <a class="btn action1" href="?edit=<?=$admin['user_id']?>">Edit</a>
+                                
                             </td>
                         </tr>
                         <?php }?>

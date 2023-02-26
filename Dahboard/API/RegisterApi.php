@@ -3,7 +3,7 @@
 include "../database/DBClass.php";
 use DbClass\Table;
 session_start();
-include "../header.php";
+// include "../header.php";
 $user = new Table('users');
 $output = ["flag"=>'0' , 'message'=>''];
 
@@ -33,14 +33,10 @@ $DataInsert = [
 
 $user->Create($DataInsert);
 $SelAdmin = $user->FindById('user_email',$email);
-$_SESSION['id_admin'] = $SelAdmin['user_id']; 
-
+$_SESSION['id_admin'] = $SelAdmin['user_id'];
 }else{
-     throw new Exception("The new password does not match");
+    throw new Exception("The new password does not match");
 }
-
-
 echo json_encode($output);
 
 ?>
-

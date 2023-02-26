@@ -13,7 +13,7 @@
         header("location:forgetPassword.php");
         exit();
     }
-    $gmailUser = $SelAdmin['user_email']; //mail to send rest password
+    $gmailUser = $SelAdmin['user_email']; 
     $nameUser = $SelAdmin['user_name'];
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;

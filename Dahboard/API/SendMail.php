@@ -6,7 +6,7 @@
     
       
     
-    $gmailUser = $SelUser['user_email']; //mail to send rest password
+    $gmailUser = $SelUser['user_email']; 
     $nameUser = $SelUser['user_name'];
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
