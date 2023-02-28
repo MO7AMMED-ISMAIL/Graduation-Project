@@ -66,7 +66,7 @@ class Table extends Database{
     }
 
     public function inputData($data) { 
-        if(strlen($data) < 0){
+        if(strlen($data) <= 0){
             throw new Exception("The input {$data} is empty");
         }
         $data = trim($data);  
@@ -97,21 +97,26 @@ class Table extends Database{
     }
 
     
-    function Upload($image,$email){
-        $targetDir = "../uploads/";
+    function Upload($image,$email , $dir="../uploads/"){
+        $targetDir = $dir;
         $fileName = basename($image["name"]);
-        $targetFilePath = $targetDir . $fileName;
-        $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+        $fileType = pathinfo($fileName,PATHINFO_EXTENSION);
         $allowTypes = array('jpg','png','jpeg','gif');
         if(in_array($fileType, $allowTypes)){
+            $newImage = uniqid().".".$fileType;
+            $targetFilePath = $targetDir . $newImage;
             if(move_uploaded_file($image["tmp_name"], $targetFilePath)){
                 $arr = [
-                    "image_path"=>uniqid().".".$fileType,
+                    "image_path"=>$newImage,
                     "email_user"=>$email
                 ];
                 $this->TbName = 'images';
                 self::Create($arr);
+            }else{
+                throw new Exception("image is not upload");
             }
+        }else{
+            throw new Exception("Please choose image ");
         }
     }
 

@@ -37,9 +37,6 @@
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="Password" name="roles_id" value="User" readonly>
                 </div>
-                <div class="form-group">
-                    <input type="file" class="form-control form-control-user" placeholder="Enter image..." name="img[]" id="image" multiple value="<?=$SelImage['image_path']?>" > 
-                </div>
                 <button class="btn btn-primary btn-user btn-block" type="submit" onclick="valid();">Update</button>
             </form>
             <hr>

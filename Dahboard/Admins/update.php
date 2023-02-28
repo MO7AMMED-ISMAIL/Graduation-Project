@@ -15,11 +15,11 @@ if($_POST['token'] == $_SESSION['token']){
 }
 
 $update = new Table('users');  
-$image = new Table('images');
 //validation
 try{
     $id = $update->inputData($_POST['id']);
     $username = $update->inputData($_POST['username']);
+    $password = $update->inputData($_POST['password']);
     $phone = $update->inputData($_POST['phone']);
     $email = $update->ValidateEmail($_POST['email']);
 }catch(Exception $e){
@@ -29,35 +29,11 @@ $password_ard = rand(1000000,99999999);
 //update
 $DataUpdate = [
     "user_name"=>$username,
-    
+    "user_password"=>$password,
     "user_pass_ard"=>$password_ard,
     "user_email"=>$email,
     "user_phone"=>$phone
 ];
-//image
-$array=[];
-$img=$_FILES['img'];
-foreach ($img['name'] as $key => $value) {
-    $tmp = $_FILES['img']['tmp_name'][$key];
-    $extensions = ['jpg','jpeg','gif','png'];
-    $ext =pathinfo($img['name'][$key],PATHINFO_EXTENSION);
-    if($extensions=$ext){
-        
-        if($img['size'][$key]<200000){
-            $newImageName = md5(uniqid()).'.'.$ext;
-            move_uploaded_file($tmp, "../uploads/".$newImageName);
-            array_push($array, $newImageName);
-        }
-    }
-}
-foreach($array as $one){
-    $ImagesUpdate =[
-    'image_path'=>$one,
-    'email_user'=>$email,
-    ];
-    $updateImage = $image->Update($ImagesUpdate,'email_user',$email);
-}
-
 $updat = $update->Update($DataUpdate,'user_id',$id);
 header("location: ../admin.php");
 exit();

@@ -9,7 +9,7 @@ include "include/navbar.php";
 ?>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow ">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -22,7 +22,7 @@ include "include/navbar.php";
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow ">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -34,13 +34,25 @@ include "include/navbar.php";
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow ">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <h3 class="mb-1 names">Vistors -><span>&nbsp;6</span></h3>
                             <p class="users"><a href="visitors.html">View Details</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow ">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <h3 class="mb-1 names">Active IDs-><span>&nbsp;8</span></h3>
+                            <p class="users"><a href="Active.html">View Details</a></p>
                         </div>
                     </div>
                 </div>

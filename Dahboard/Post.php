@@ -20,6 +20,10 @@
         $PostID = $_GET['edit'];
         $SelPost = $posts->FindById('post_id',$PostID);
         include "Posts/EditForm.php";
+    }elseif(isset($_GET['view'])){
+        $PostID = $_GET['view'];
+        $SelPost = $posts->FindById('post_id',$PostID);
+        include "Posts/table.php";
     }
     else{
         include "Posts/table.php";

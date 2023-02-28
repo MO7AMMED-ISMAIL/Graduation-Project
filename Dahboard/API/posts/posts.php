@@ -6,6 +6,7 @@
     $cond=['users_id'=>'user_id'];
     $posts = new Table('posts');
     $output = ["flag"=>'0' , 'message'=>''];
+
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         try{
             $posts = $posts->InnerJoin('users',$row,$cond);

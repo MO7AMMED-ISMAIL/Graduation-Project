@@ -37,7 +37,6 @@
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="Password" name="role" value="<?= $role == 0? 'User':''?>" readonly>
                 </div>
-                
                 <div class="form-group">
                     <input type="file" class="form-control form-control-user" placeholder="Enter image..." name="img[]" id="image" multiple> 
                 </div>
