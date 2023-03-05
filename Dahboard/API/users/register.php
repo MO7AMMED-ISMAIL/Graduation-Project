@@ -14,30 +14,25 @@
                 $phone = $user->inputData($_POST['phone']);
                 $password = $user->inputData($_POST['password']);
                 $repeatPassword = $user->inputData($_POST['repeatPassword']);
-                $vervfiyEmail = SendMail($email,$username);
-                if($vervfiyEmail != false){
-                    if($password != $repeatPassword){
-                        throw new Exception("Passwords do not match");
-                    }else{
-                        $role = 2;
-                        $password_ard = rand(1000000,99999999);
-                        //insert user
-                        $DataInsert = [
-                            'user_name'=>$username,
-                            'user_password'=>$password,
-                            'user_pass_ard'=>$password_ard,
-                            'user_email'=>$email,
-                            'user_phone'=>$phone,
-                            'user_role'=>$role,
-                        ];
-                        $user->Create($DataInsert); 
-                        $output['flag']= 1;
-                        $output['message']= "sucess register";
-                        $output['code']= $vervfiyEmail['code'];
-                    }
+                if($password != $repeatPassword){
+                    throw new Exception("Passwords do not match");
                 }else{
-                    $output['message']= "Vervify your email";
+                    $role = '1';
+                    $password_ard = rand(1000000,99999999);
+                    //insert user
+                    $DataInsert = [
+                        'user_name'=>$username,
+                        'user_password'=>$password,
+                        'user_pass_ard'=>$password_ard,
+                        'user_email'=>$email,
+                        'user_phone'=>$phone,
+                        'user_role'=>$role,
+                    ];
+                    $user->Create($DataInsert); 
+                    $output['flag']= 1;
+                    $output['message']= "sucess register";
                 }
+                
             }else{
                 $output['message']= "Complete Your data to register";
             }

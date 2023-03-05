@@ -19,7 +19,7 @@
             $mail->addAddress($email); 
             //Content
             $mail->isHTML(true); 
-            $mail->Subject = 'Forgetten password message';
+            $mail->Subject = 'login in my system to vrify your indinety';
             $mail->Body    = 'Hello '.$username.'!<br><h3>Here is your Verification code ^_^</h3><br><h1>'.$Code.'</h1>';
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             if($mail->send()){

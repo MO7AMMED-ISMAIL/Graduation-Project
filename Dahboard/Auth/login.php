@@ -17,7 +17,7 @@ $admins = new Table('users');
 try{
     $email = $admins->ValidateEmail($_POST['email']);
     $password = $admins->inputData($_POST['password']);
-    $user_role = ['user_role'=>'0'];
+    $user_role = ['user_role'=> '0'];
     $admin = $admins->Login($email,$password,$user_role);
     $_SESSION['Admin_id'] = $admin['user_id'];
     $_SESSION['Admin_email'] = $admin['user_email'];
