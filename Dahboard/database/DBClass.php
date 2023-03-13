@@ -53,6 +53,11 @@ class Table extends Database{
         $sql = "UPDATE {$this->TbName} SET ". implode(', ', $cols) ." WHERE $cond  = :id";
         $stmt = parent::connect()->prepare($sql);
         $stmt->execute(['id' => $value]);
+        if($stmt){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function Create(array $values){
@@ -63,6 +68,11 @@ class Table extends Database{
         $sql = "INSERT INTO {$this->TbName} ({$keys}) VALUES ({$value})";
         $stmt = parent::connect()->prepare($sql);
         $stmt = $stmt->execute();
+        if($stmt){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function inputData($data) { 
