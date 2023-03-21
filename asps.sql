@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2023 at 09:36 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Mar 21, 2023 at 12:21 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -68,10 +68,9 @@ INSERT INTO `images` (`image_id`, `image_path`, `email_user`) VALUES
 (125, 'e30a582bedb00b58fc78e838c332acd1.jpg', 'ahmedwael@mailinator.com'),
 (126, '1b1d888d8dab4428938ce9f10a648071.jpg', 'alisamy@gmail.com'),
 (127, '308bfa793a415c0d87c038238361288f.jpg', 'alisamy@gmail.com'),
-(131, '683e3e70f127a25fd18569869763e153.jpg', 'mohamedismail@gmail.com'),
-(132, '0928feea769567f86661e043bba676a2.jpg', 'mohamedismail@gmail.com'),
 (133, 'd1c55ac5e56a4e3b4bf98ae8f3eadc01.jpg', 'karimmohamed@gmail.com'),
-(134, '1e945113238ee1ded02c4cb4ea207ab6.jpg', 'karimmohamed@gmail.com');
+(134, '1e945113238ee1ded02c4cb4ea207ab6.jpg', 'karimmohamed@gmail.com'),
+(151, '6408dc35bd7e4.jpg', 'mo7ismail99@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -83,15 +82,17 @@ CREATE TABLE `messages` (
   `mes_id` int(11) NOT NULL,
   `mes_content` text NOT NULL,
   `mes_from` varchar(255) NOT NULL,
-  `mes_to` varchar(255) NOT NULL
+  `mes_to` varchar(255) NOT NULL,
+  `mes_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`mes_id`, `mes_content`, `mes_from`, `mes_to`) VALUES
-(4, 'Congratulations on the new position', 'mohamedahmed@gmail.com', 'eslammohmoud@gmail.com');
+INSERT INTO `messages` (`mes_id`, `mes_content`, `mes_from`, `mes_to`, `mes_date`) VALUES
+(4, 'Congratulations on the new position', 'mohamedahmed@gmail.com', 'eslammohmoud@gmail.com', '2023-03-10 09:02:14'),
+(7, 'medo sent mes', 'mo7ismail99@gmail.com', 'hga@gmail.com', '2023-03-10 09:27:27');
 
 -- --------------------------------------------------------
 
@@ -125,16 +126,19 @@ CREATE TABLE `posts` (
   `post_id` int(11) NOT NULL,
   `post_title` varchar(255) NOT NULL,
   `post_content` text NOT NULL,
+  `post_img` text NOT NULL,
   `users_id` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `post_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`post_id`, `post_title`, `post_content`, `users_id`, `date`) VALUES
-(5, 'New year celebration', 'Happy New year . Thank you so much for supporting our business in 2022. We’re looking forward to serving you again in 2023 !', 161, '2023-02-13 19:38:25');
+INSERT INTO `posts` (`post_id`, `post_title`, `post_content`, `post_img`, `users_id`, `post_date`) VALUES
+(5, 'New year celebration', 'Happy New year', '', 161, '2023-03-09 16:51:43'),
+(8, 'post1', 'content 1', '', 197, '2023-03-09 16:50:51'),
+(9, 'title image update', 'content image update', '640a356380f6a.jpg', 197, '2023-03-09 19:37:07');
 
 -- --------------------------------------------------------
 
@@ -146,15 +150,16 @@ CREATE TABLE `tasks` (
   `task_id` int(11) NOT NULL,
   `task_content` text NOT NULL,
   `task_from` varchar(255) NOT NULL,
-  `task_To` varchar(255) NOT NULL
+  `task_To` varchar(255) NOT NULL,
+  `task_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`task_id`, `task_content`, `task_from`, `task_To`) VALUES
-(7, 'devices maintenance', 'mohamedahmed@gmail.com', 'amirsameeh@mailinator.com');
+INSERT INTO `tasks` (`task_id`, `task_content`, `task_from`, `task_To`, `task_date`) VALUES
+(7, 'devices maintenance', 'mohamedahmed@gmail.com', 'amirsameeh@mailinator.com', '2023-03-10 18:13:08');
 
 -- --------------------------------------------------------
 
@@ -186,11 +191,11 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `use
 (170, 'Said Ahmed', 'saidahmed@gmail.com', 'Pa$$w0rd!', 65821460, '01212255521', '2'),
 (171, 'ahmed wael', 'ahmedwael@mailinator.com', 'Pa$$w0rd!', 41989184, '01122555211', '2'),
 (172, 'Ali Samy', 'alisamy@gmail.com', 'Pa$$w0rd!', 93453239, '01122555211', '2'),
-(174, 'Mohamed Ismail', 'mohamedismail@gmail.com', 'Pa$$w0rd!', 38080721, '01122555211', '0'),
 (175, 'karim mohamed', 'karimmohamed@gmail.com', 'Pa$$w0rd!', 37526543, '01112255521', '0'),
 (186, 'wael', 'hga@gmail.com', '123', 9390469, '010115100', '1'),
 (188, 'wael', 'hgaa@gmail.com', '123', 33704938, '010115100', '1'),
-(190, 'wael', 'hgaaa@gmail.com', '123', 6562059, '010115100', '1');
+(190, 'wael', 'hgaaa@gmail.com', '123', 6562059, '010115100', '1'),
+(197, 'Mohamed Ismail', 'mo7ismail99@gmail.com', '1234566', 14388655, '01008701177', '0');
 
 --
 -- Indexes for dumped tables
@@ -261,13 +266,13 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `mes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `mes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `places`
@@ -279,7 +284,7 @@ ALTER TABLE `places`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tasks`
@@ -291,7 +296,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
 
 --
 -- Constraints for dumped tables
