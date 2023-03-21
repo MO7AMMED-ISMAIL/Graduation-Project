@@ -11,7 +11,7 @@
     //include "database/DBClass.php";
     use DbClass\Table;
     $tasks = new Table('tasks');
-    $row = ['task_id','task_content','task_from','task_to','user_id','user_email','user_name'];
+    $row = ['task_id','task_content','task_from','task_to','user_id','user_email','user_name','task_date'];
     $cond=['task_from'=>'user_email'];
     $result = $tasks->InnerJoin('users',$row,$cond);
 

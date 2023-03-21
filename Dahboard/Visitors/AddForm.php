@@ -8,7 +8,6 @@
     }else{
         header("location: ../Visitor.php");
     }
-    
 ?>
 
 <div class="row">
@@ -38,8 +37,9 @@
                     <input type="text" class="form-control form-control-user" placeholder="Password" name="role" value="<?= $role == 0? 'Visitor':''?>" readonly>
                 </div>
                 <div class="form-group">
-                    <input type="file" class="form-control form-control-user" placeholder="Enter image..." name="img[]" id="image" multiple> 
+                    <input type="file" class="form-control" style="border-radius: 20px; height: 45px;" name="img[]" id="image" multiple onchange="fileValid()">
                 </div>
+                <div id="imagePreview" style="text-align: center;"></div>
                 <button type="submit" class="btn btn-primary btn-user btn-block" onclick="valid()">ADD</button>
             </form>
             <hr>

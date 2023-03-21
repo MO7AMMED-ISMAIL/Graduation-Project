@@ -6,7 +6,7 @@
         $users = new Table('users');
         $userEmail = $users->FindAll(); 
     }else{
-        header("location: ../Admin.php");
+        header("location: ../Message.php");
         exit();
     }
     

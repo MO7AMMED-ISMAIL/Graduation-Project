@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="Enter Phone..." name="phone" value="<?=$SelAdmin['user_phone']?>" id="phone">
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
                     <input type="file" class="form-control form-control-user" placeholder="Enter image..." name="img[]" id="image" multiple> 
                 </div>
                 <div class="form-group">

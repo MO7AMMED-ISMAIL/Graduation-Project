@@ -38,12 +38,19 @@
                     <input type="text" class="form-control form-control-user" placeholder="Password" name="role" value="<?= $role == 0? 'Admin':''?>" readonly>
                 </div>
                 <div class="form-group">
-                    <input type="file" class="form-control form-control-user" placeholder="Enter image..." name="img[]" id="image" multiple> 
+                    <input style="border-radius: 20px; height: 45px;" type="file" class="form-control" name="img[]" id="image" multiple onchange="fileValid()"> 
                 </div>
+                <div id="imagePreview" style="text-align: center;"></div>
                 <button type="submit" class="btn btn-primary btn-user btn-block" onclick="valid()">ADD</button>
             </form>
             <hr>
-            <div class='alert alert-danger' role='alert' id="error"></div>
+            <div class='alert alert-danger' role='alert' id='error'></div>
+            <?php
+                if(isset($_SESSION['err'])){
+                    echo "<div class='alert alert-danger' role='alert' id='error'>".$_SESSION['err']."</div>";
+                    unset($_SESSION['err']);
+                }
+            ?>
         </div>
     </div>
 </div>

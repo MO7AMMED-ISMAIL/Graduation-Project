@@ -4,7 +4,6 @@ require "connect.php";
 use base\Database;
 use Exception;
 
-
 class Table extends Database{
 
     public $TbName;
@@ -53,11 +52,6 @@ class Table extends Database{
         $sql = "UPDATE {$this->TbName} SET ". implode(', ', $cols) ." WHERE $cond  = :id";
         $stmt = parent::connect()->prepare($sql);
         $stmt->execute(['id' => $value]);
-        if($stmt){
-            return true;
-        }else{
-            return false;
-        }
     }
 
     public function Create(array $values){
@@ -68,11 +62,6 @@ class Table extends Database{
         $sql = "INSERT INTO {$this->TbName} ({$keys}) VALUES ({$value})";
         $stmt = parent::connect()->prepare($sql);
         $stmt = $stmt->execute();
-        if($stmt){
-            return true;
-        }else{
-            return false;
-        }
     }
 
     public function inputData($data) { 
@@ -107,26 +96,37 @@ class Table extends Database{
     }
 
     
-    function Upload($image,$email , $dir="../uploads/"){
-        $targetDir = $dir;
-        $fileName = basename($image["name"]);
-        $fileType = pathinfo($fileName,PATHINFO_EXTENSION);
-        $allowTypes = array('jpg','png','jpeg','gif');
-        if(in_array($fileType, $allowTypes)){
-            $newImage = uniqid().".".$fileType;
-            $targetFilePath = $targetDir . $newImage;
-            if(move_uploaded_file($image["tmp_name"], $targetFilePath)){
-                $arr = [
-                    "image_path"=>$newImage,
-                    "email_user"=>$email
-                ];
-                $this->TbName = 'images';
-                self::Create($arr);
-            }else{
-                throw new Exception("image is not upload");
+    function upload($images ,$email , $dir="../uploads/"){
+        $dirFile = $dir; 
+        $allowTypes = array('jpg','png','jpeg','gif'); 
+        $fileNames = array_filter($images['name']);
+        if(!empty($fileNames)){
+            foreach($images['name'] as $key => $val){
+                $fileName = basename($images["name"][$key]);
+                $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
+                $newImage = uniqid().".".$fileType;
+                $targetFilePath = $dirFile . $newImage;
+                if($images['size'][$key] < 1000000){
+                    if(in_array($fileType, $allowTypes)){
+                        if(move_uploaded_file($images["tmp_name"][$key], $targetFilePath)){
+                            $arr = [
+                                "image_path"=>$newImage,
+                                "email_user"=>$email
+                            ];
+                            $this->TbName = 'images';
+                            self::Create($arr);
+                        }else{
+                            throw new Exception("image is not upload");
+                        }
+                    }else{
+                        throw new Exception("Please choose image ");
+                    }
+                }else{
+                    throw new Exception("size is very than bigger");
+                }
             }
         }else{
-            throw new Exception("Please choose image ");
+            throw new Exception("YOU MUST UPLOAD IMAGES....");
         }
     }
 
@@ -150,5 +150,4 @@ class Table extends Database{
         }
     }
 }
-
 ?>

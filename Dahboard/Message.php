@@ -11,12 +11,11 @@
     //include "database/DBClass.php";
     use DbClass\Table;
     $messages = new Table('messages');
-    $row = ['mes_id','mes_content','mes_from','mes_to','user_id','user_email','user_name'];
+    $row = ['mes_id','mes_content','mes_from','mes_to','mes_date','user_id','user_email','user_name'];
     $cond=['mes_from'=>'user_email'];
     $result = $messages->InnerJoin('users',$row,$cond);
-
     if(isset($_GET['add']) == 'Mes'){
-        include "Messages/AddForm.php";  
+        include "Messages/AddForm.php"; 
     }elseif(isset($_GET['edit'])){
         $MesID = $_GET['edit'];
         $SelMes = $messages->FindById('mes_id',$MesID);

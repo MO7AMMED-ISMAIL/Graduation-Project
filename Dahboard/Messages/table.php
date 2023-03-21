@@ -1,5 +1,4 @@
 <div class="container-fluid">
-    <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Table Admins</h6>
@@ -31,19 +30,41 @@
                                 ?>
                                 <a class="btn action" href="Messages/delete.php?mes_id=<?=$mes['mes_id']?>">Delete</a>
                                 <a class="btn action1" href="Message.php?edit=<?=$mes['mes_id']?>">Edit</a>
+                                <a class="btn action1"data-toggle="modal" data-target="#exampleModalToggle">View</a>
                             </td>
                             <?php }else{?>
-                            <a class="btn action1" href="?view=mes">View</a>
+                                <a class="btn action1" data-toggle="modal" data-target="#exampleModalToggle">View</a>
                             <?php } ?>
                         </tr>
-                        <?php }?>
+                    <?php }?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
+</div>
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel">View</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Admin Sender</label>
+                        <input type="text" class="form-control form-control-user" readonly value="<?=$mes['user_name']?>">
+                        <label>Data</label>
+                        <input type="text" class="form-control form-control-user" readonly value="<?=$mes['mes_date']?>">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button class="btn btn-primary" type="button" data-dismiss="modal" aria-label="Close">Close</button>
+                </div>
+            </div>
+        </div>
 </div>
 </body>
-
 </html>
