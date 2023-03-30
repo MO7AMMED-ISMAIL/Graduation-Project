@@ -13,6 +13,7 @@
                 $output['flag']= 1;
                 $output['message']= "Success Login";
                 $output['id'] = $user['user_id'];
+                $output['role'] = $user['user_role'];
             }catch(Exception $e){
                 $output['message']= $e->getMessage();
             }
