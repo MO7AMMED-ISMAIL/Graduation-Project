@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2023 at 12:21 PM
+-- Generation Time: May 01, 2023 at 05:55 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -50,27 +50,8 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`image_id`, `image_path`, `email_user`) VALUES
-(104, 'b52c603cf5aa72472f7005d521f1555f.jpg', 'mohamedahmed@gmail.com'),
-(105, 'ea7d08f00e0a684962ea6c701ad35c91.jpg', 'mohamedahmed@gmail.com'),
-(106, '21939a5333e76f08c2329190247c410a.jpg', 'eslammohmoud@gmail.com'),
-(107, 'cb56df7371f5d90fab20dc93c6dcf57d.jpg', 'eslammohmoud@gmail.com'),
-(112, '757da50317a0f0a556baa8316423df9d.jpg', 'amirsameeh@mailinator.com'),
-(113, 'c33ef6cc59d7d5576ce3c89a5fe00722.jpg', 'amirsameeh@mailinator.com'),
-(114, '5ce806829b482f6f269e12bb0d5c9e8d.jpg', 'omarmohamed@gmail.com'),
-(115, '0eec9703eb8bca390df48dd18416ed50.jpg', 'omarmohamed@gmail.com'),
-(116, '45e15564a926d9c2f5f3076c203ade97.jpg', 'eslamahmed@gmail.com'),
-(117, 'e49b94baa509144b2d07d19b81b28f49.jpg', 'eslamahmed@gmail.com'),
-(120, '1a1221b0e90ec1d2934f0268a6485ffe.png', 'omarahmed@gmail.com'),
-(121, 'c294b6f7498c29ee443cd37f55858273.jpg', 'omarahmed@gmail.com'),
-(122, 'cc01014e2f13b9c2c9b2ec2d3735ce0b.jpg', 'saidahmed@gmail.com'),
-(123, '40bb46bebb38d9130fff705a9a1a513d.jpg', 'saidahmed@gmail.com'),
-(124, '492ce980862d05787734f32e45ec811b.jpg', 'ahmedwael@mailinator.com'),
-(125, 'e30a582bedb00b58fc78e838c332acd1.jpg', 'ahmedwael@mailinator.com'),
-(126, '1b1d888d8dab4428938ce9f10a648071.jpg', 'alisamy@gmail.com'),
-(127, '308bfa793a415c0d87c038238361288f.jpg', 'alisamy@gmail.com'),
-(133, 'd1c55ac5e56a4e3b4bf98ae8f3eadc01.jpg', 'karimmohamed@gmail.com'),
-(134, '1e945113238ee1ded02c4cb4ea207ab6.jpg', 'karimmohamed@gmail.com'),
-(151, '6408dc35bd7e4.jpg', 'mo7ismail99@gmail.com');
+(151, '6408dc35bd7e4.jpg', 'mo7ismail99@gmail.com'),
+(159, '644fddefee68c.jpg', 'mero@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -91,7 +72,6 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`mes_id`, `mes_content`, `mes_from`, `mes_to`, `mes_date`) VALUES
-(4, 'Congratulations on the new position', 'mohamedahmed@gmail.com', 'eslammohmoud@gmail.com', '2023-03-10 09:02:14'),
 (7, 'medo sent mes', 'mo7ismail99@gmail.com', 'hga@gmail.com', '2023-03-10 09:27:27');
 
 -- --------------------------------------------------------
@@ -136,7 +116,6 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_title`, `post_content`, `post_img`, `users_id`, `post_date`) VALUES
-(5, 'New year celebration', 'Happy New year', '', 161, '2023-03-09 16:51:43'),
 (8, 'post1', 'content 1', '', 197, '2023-03-09 16:50:51'),
 (9, 'title image update', 'content image update', '640a356380f6a.jpg', 197, '2023-03-09 19:37:07');
 
@@ -153,13 +132,6 @@ CREATE TABLE `tasks` (
   `task_To` varchar(255) NOT NULL,
   `task_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tasks`
---
-
-INSERT INTO `tasks` (`task_id`, `task_content`, `task_from`, `task_To`, `task_date`) VALUES
-(7, 'devices maintenance', 'mohamedahmed@gmail.com', 'amirsameeh@mailinator.com', '2023-03-10 18:13:08');
 
 -- --------------------------------------------------------
 
@@ -182,20 +154,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_pass_ard`, `user_phone`, `user_role`) VALUES
-(161, 'Mohamed Ali', 'mohamedahmed@gmail.com', 'Pa$$w0rd!', 31261842, '01122555210', '0'),
-(162, 'Eslam Mahmoud', 'eslammohmoud@gmail.com', 'Pa$$w0rd!', 75733521, '01112345431', '0'),
-(165, 'Amir Sameeh', 'amirsameeh@mailinator.com', 'Pa$$w0rd!', 35393119, '01122555211', '1'),
-(166, 'Omar Mohamed', 'omarmohamed@gmail.com', 'Pa$$w0rd!', 5724344, '01245256991', '1'),
-(167, 'Eslam Ahmed', 'eslamahmed@gmail.com', 'Pa$$w0rd!', 47416729, '01122555211', '1'),
-(169, 'Omar Ahmed', 'omarahmed@gmail.com', 'Pa$$w0rd!', 44808212, '01122555211', '2'),
-(170, 'Said Ahmed', 'saidahmed@gmail.com', 'Pa$$w0rd!', 65821460, '01212255521', '2'),
-(171, 'ahmed wael', 'ahmedwael@mailinator.com', 'Pa$$w0rd!', 41989184, '01122555211', '2'),
-(172, 'Ali Samy', 'alisamy@gmail.com', 'Pa$$w0rd!', 93453239, '01122555211', '2'),
-(175, 'karim mohamed', 'karimmohamed@gmail.com', 'Pa$$w0rd!', 37526543, '01112255521', '0'),
 (186, 'wael', 'hga@gmail.com', '123', 9390469, '010115100', '1'),
 (188, 'wael', 'hgaa@gmail.com', '123', 33704938, '010115100', '1'),
 (190, 'wael', 'hgaaa@gmail.com', '123', 6562059, '010115100', '1'),
-(197, 'Mohamed Ismail', 'mo7ismail99@gmail.com', '1234566', 14388655, '01008701177', '0');
+(197, 'Mohamed Ismail', 'mo7ismail99@gmail.com', '1234566', 14388655, '01008701177', '0'),
+(208, 'Maner Elsayed Ismail', 'mero@gmail.com', '1234Aliaa@@', 13610682, '01066887788', '1');
 
 --
 -- Indexes for dumped tables
@@ -266,7 +229,7 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -296,7 +259,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
 
 --
 -- Constraints for dumped tables

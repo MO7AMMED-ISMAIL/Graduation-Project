@@ -1,7 +1,7 @@
 <?php
     include "../../database/DBClass.php";
     include "../header.php";
-
+    include "SendMail.php";
     use DbClass\Table;
     $user = new Table('users');
     $output = ["flag"=>'0' , 'message'=>''];
@@ -31,7 +31,6 @@
                     $user->Create($DataInsert); 
                     $output['flag']= 1;
                     $output['message']= "sucess register";
-                    $output['inviteCode'] = $password_ard;
                 }
                 
             }else{

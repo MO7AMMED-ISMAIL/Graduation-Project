@@ -33,7 +33,7 @@
 
             <!-- Dasbord -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3 page-title">ASPS Dashboard</div>
+                <div class="sidebar-brand-text mx-3 page-title">LI Guard </div>
             </a>
             <hr class="sidebar-divider my-0">
 
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </li>
-            <!-- Admin -->
+            <!-- end Admin -->
 
             <!-- User -->
             <li class="nav-item <?=$current == 'User'? 'active':''?>">
