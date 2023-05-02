@@ -2,7 +2,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Table Admins</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Table Task</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -30,6 +30,7 @@
                                 ?>
                                 <a class="btn action" href="Tasks/delete.php?task_id=<?=$task['task_id']?>">Delete</a>
                                 <a class="btn action1" href="Task.php?edit=<?=$task['task_id']?>">Edit</a>
+                                <a class="btn action1" data-toggle="modal" data-target="#exampleModalToggle">View</a>
                             </td>
                             <?php }else{?>
                                 <a class="btn action1" data-toggle="modal" data-target="#exampleModalToggle">View</a>

@@ -44,6 +44,12 @@
             </form>
             <hr>
             <div class='alert alert-danger' role='alert' id="error"></div>
+            <?php
+                if(isset($_SESSION['err'])){
+                    echo "<div class='alert alert-danger' role='alert' id='error'>".$_SESSION['err']."</div>";
+                    unset($_SESSION['err']);
+                }
+            ?>
         </div>
     </div>
 </div>

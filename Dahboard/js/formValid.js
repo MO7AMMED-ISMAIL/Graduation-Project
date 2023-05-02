@@ -38,6 +38,10 @@ function valid() {
         valid = false;
     }
     
+    if(arrError.length > 0){
+        divError.style.display = "block";
+        divError.innerHTML = arrError.join(' ');
+    }
     
     if (valid === false) {
         event.preventDefault();

@@ -18,7 +18,7 @@
             </div>
 
             <form action="Visitors/add.php" method="post" class="user" enctype="multipart/form-data" >
-            <div class="form-group">
+                <div class="form-group">
                     <input type="hidden" class="form-control form-control-user" name="token" value="<?=$_SESSION['token']?>">
                 </div>
                 <div class="form-group">
@@ -44,6 +44,12 @@
             </form>
             <hr>
             <div class='alert alert-danger' role='alert' id="error"></div>
+            <?php
+                if(isset($_SESSION['err'])){
+                    echo "<div class='alert alert-danger' role='alert' id='error'>".$_SESSION['err']."</div>";
+                    unset($_SESSION['err']);
+                }
+            ?>
         </div>
     </div>
 </div>

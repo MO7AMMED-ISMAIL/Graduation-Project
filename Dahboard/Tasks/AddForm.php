@@ -16,7 +16,7 @@
     <div class="col-lg-12">
         <div class="p-5">
             <div class="text-center">
-                <h2 class="h4 text-gray-900 mb-4">Create New Post</h2>
+                <h2 class="h4 text-gray-900 mb-4">Create New Task</h2>
             </div>
             <form action="Tasks/add.php" method="post" class="user">
             <div class="form-group">

@@ -2,7 +2,7 @@
 include "../database/DBClass.php";
 use DbClass\Table;
 session_start();
-$visitors = new Table('visitors');
+$visitors = new Table('users');
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     if(!isset($_POST['token']) || !isset($_SESSION['token'])){
@@ -36,8 +36,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 'user_role'=>$role,
             ];
             $visitors->Create($DataInsert);
-            $users->upload($img , $email);
-            header("location: ../user.php");
+            $visitors->upload($img , $email);
+            header("location: ../Visitor.php");
             exit();
         }else{
             $_SESSION['err'] = "You Must Upload Image";
